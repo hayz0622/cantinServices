@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, ArrowRight, MessageSquare } from "lucide-react";
+import { ArrowIcon, ClockIcon, LocationIcon, MailIcon, MessageIcon, PhoneIcon } from "@/components/ModernIcons";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,7 +25,7 @@ const zones = [
 
 const contactItems = [
   {
-    icon: Phone,
+    icon: PhoneIcon,
     label: "Téléphone",
     value: "418-255-1688",
     sub: "Appelez ou textez",
@@ -33,7 +33,7 @@ const contactItems = [
     accent: false,
   },
   {
-    icon: Mail,
+    icon: MailIcon,
     label: "Courriel",
     value: "cantinservicesdarbres@gmail.com",
     sub: "Réponse rapide",
@@ -41,7 +41,7 @@ const contactItems = [
     accent: false,
   },
   {
-    icon: MapPin,
+    icon: LocationIcon,
     label: "Adresse",
     value: "Saint-Raymond, QC",
     sub: "Base d'opérations",
@@ -49,7 +49,7 @@ const contactItems = [
     accent: false,
   },
   {
-    icon: Clock,
+    icon: ClockIcon,
     label: "Heures",
     value: "Lundi – Dimanche",
     sub: "8h – 20h · Urgence 24/7",
@@ -74,7 +74,7 @@ const ContactezNous = () => {
       <section className="relative gradient-hero py-24 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(22,100%,44%)" }} />
+          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(42,95%,47%)" }} />
         </div>
         <div className="container relative">
           <motion.div
@@ -83,7 +83,7 @@ const ContactezNous = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-              <MessageSquare size={12} />
+              <MessageIcon size={12} />
               Prenons contact
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
@@ -173,13 +173,13 @@ const ContactezNous = () => {
                   className="flex items-center gap-4 group p-4 rounded-xl border border-border/60 bg-white hover:border-primary/30 hover:bg-primary/4 transition-all duration-200"
                 >
                   <div className="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Phone className="text-primary" size={18} />
+                    <PhoneIcon className="text-primary" size={18} />
                   </div>
                   <div>
                     <p className="font-bold group-hover:text-primary transition-colors">418-255-1688</p>
                     <p className="text-sm text-muted-foreground">Téléphone ou texto</p>
                   </div>
-                  <ArrowRight size={15} className="ml-auto text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                  <ArrowIcon size={15} className="ml-auto text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </a>
 
                 <a
@@ -187,18 +187,18 @@ const ContactezNous = () => {
                   className="flex items-center gap-4 group p-4 rounded-xl border border-border/60 bg-white hover:border-primary/30 hover:bg-primary/4 transition-all duration-200"
                 >
                   <div className="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Mail className="text-primary" size={18} />
+                    <MailIcon className="text-primary" size={18} />
                   </div>
                   <div className="min-w-0">
                     <p className="font-bold group-hover:text-primary transition-colors truncate">cantinservicesdarbres@gmail.com</p>
                     <p className="text-sm text-muted-foreground">Courriel</p>
                   </div>
-                  <ArrowRight size={15} className="ml-auto shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                  <ArrowIcon size={15} className="ml-auto shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </a>
 
                 <div className="flex items-center gap-4 p-4 rounded-xl border border-border/60 bg-white">
                   <div className="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <MapPin className="text-primary" size={18} />
+                    <LocationIcon className="text-primary" size={18} />
                   </div>
                   <div>
                     <p className="font-bold">Saint-Raymond, QC</p>
@@ -208,7 +208,7 @@ const ContactezNous = () => {
 
                 <div className="flex items-center gap-4 p-4 rounded-xl border border-accent/20 bg-accent/6">
                   <div className="w-11 h-11 bg-accent/15 rounded-xl flex items-center justify-center">
-                    <Clock className="text-accent" size={18} />
+                    <ClockIcon className="text-accent" size={18} />
                   </div>
                   <div>
                     <p className="font-bold text-accent">Lundi – Dimanche · 8h – 20h</p>
@@ -298,7 +298,7 @@ const ContactezNous = () => {
                     className="w-full bg-primary text-white hover:bg-primary/90 rounded-xl h-12 font-bold text-base transition-all duration-200 hover:shadow-glow-primary group"
                   >
                     Envoyer la demande
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowIcon size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
@@ -344,7 +344,7 @@ const ContactezNous = () => {
                 key={z}
                 className="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-border/50 text-sm font-medium hover:bg-primary/6 hover:border-primary/20 hover:text-primary transition-all duration-200"
               >
-                <MapPin size={13} className="text-primary shrink-0" />
+                <LocationIcon size={13} className="text-primary shrink-0" />
                 <span>{z}</span>
               </div>
             ))}
