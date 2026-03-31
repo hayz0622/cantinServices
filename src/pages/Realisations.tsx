@@ -48,10 +48,10 @@ const Realisations = () => {
               Portfolio
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              Nos <span className="text-gradient-amber">Réalisations</span>
+              Galerie
             </h1>
             <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
-              Découvrez quelques-uns de nos projets récents en images.
+              Un aperçu de ce qu'on peut accomplir pour vous.
             </p>
             <Link
               to="/contactez-nous"
@@ -84,11 +84,12 @@ const Realisations = () => {
               <span className="w-8 h-0.5 bg-primary" />
             </div>
             <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-4">
-              Galerie <span className="text-gradient">photo</span>
+              Nos <span className="text-gradient">réalisations</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Voici un aperçu de nos réalisations dans la région de la Mauricie.
-              Chaque projet est unique et réalisé avec le plus grand soin.
+              Notre engagement envers la sécurité, la précision et le respect de vos arbres se reflète
+              dans chacune de nos réalisations. Voici un aperçu de notre savoir-faire dans tous les
+              aspects de l'arboriculture.
             </p>
           </motion.div>
         </div>

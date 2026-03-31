@@ -7,11 +7,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "Offrez-vous des soumissions gratuites?", a: "Oui! Nous offrons des soumissions gratuites et sans engagement pour tous nos services. Contactez-nous par téléphone ou via le formulaire." },
+  { q: "Offrez-vous des soumissions gratuites?", a: "Oui! Nous offrons des soumissions gratuites et sans engagement pour tous nos services. Contactez-nous par téléphone, texto ou via le formulaire." },
   { q: "Êtes-vous assurés?", a: "Oui, nous détenons une assurance responsabilité civile complète pour protéger votre propriété et notre équipe." },
-  { q: "Quelle est votre zone de service?", a: "Nous desservons toute la région de la Mauricie, incluant Trois-Rivières, Shawinigan, Saint-Tite, Batiscan et les environs." },
+  { q: "Quelle est votre zone de service?", a: "Nous desservons la Mauricie, Mékinac, Portneuf et les environs — incluant Trois-Rivières, Shawinigan, Saint-Tite, Saint-Raymond, Pont-Rouge et davantage." },
   { q: "Offrez-vous un service d'urgence?", a: "Oui, notre service d'urgence est disponible 24 heures sur 24, 7 jours sur 7, pour les situations critiques." },
-  { q: "Avez-vous besoin d'un permis pour abattre un arbre?", a: "Dans la plupart des municipalités, un permis est requis. Nous vous accompagnons dans les démarches nécessaires." },
+  { q: "Avez-vous besoin d'un permis pour abattre un arbre?", a: "Dans la plupart des municipalités, un certificat d'autorisation est requis. Nous vous accompagnons dans les démarches et pouvons agir comme mandataire." },
+];
+
+const zones = [
+  "Mauricie", "Mékinac", "Saint-Tite", "Shawinigan",
+  "Saint-Marc-des-Carrières", "Saint-Ubalde", "Rivière-à-Pierre",
+  "Lac-aux-Sables", "Saint-Maurice", "Trois-Rivières",
+  "Sainte-Catherine", "Lac Sept Îles", "Lac-Saint-Joseph",
+  "Portneuf", "Saint-Raymond", "Pont-Rouge", "Québec",
+  "Et davantage…",
 ];
 
 const contactItems = [
@@ -19,41 +28,33 @@ const contactItems = [
     icon: Phone,
     label: "Téléphone",
     value: "418-255-1688",
-    sub: "Appelez-nous",
+    sub: "Appelez ou textez",
     href: "tel:4182551688",
-    color: "text-primary",
-    bg: "bg-primary/8 border-primary/15",
-    iconBg: "bg-primary/10 group-hover:bg-primary/20",
+    accent: false,
   },
   {
     icon: Mail,
     label: "Courriel",
     value: "cantinservicesdarbres@gmail.com",
-    sub: "Écrivez-nous",
+    sub: "Réponse rapide",
     href: "mailto:cantinservicesdarbres@gmail.com",
-    color: "text-primary",
-    bg: "bg-primary/8 border-primary/15",
-    iconBg: "bg-primary/10 group-hover:bg-primary/20",
+    accent: false,
   },
   {
     icon: MapPin,
-    label: "Localisation",
-    value: "Saint-Stanislas-de-Champlain",
-    sub: "Notre base d'opérations",
+    label: "Adresse",
+    value: "Saint-Raymond, QC",
+    sub: "Base d'opérations",
     href: null,
-    color: "text-primary",
-    bg: "bg-primary/8 border-primary/15",
-    iconBg: "bg-primary/10",
+    accent: false,
   },
   {
     icon: Clock,
     label: "Heures",
-    value: "Lun–Ven : 7h–17h",
-    sub: "Sam 8h–12h · Urgence 24/7",
+    value: "Lundi – Dimanche",
+    sub: "8h – 20h · Urgence 24/7",
     href: null,
-    color: "text-accent",
-    bg: "bg-accent/8 border-accent/15",
-    iconBg: "bg-accent/10",
+    accent: true,
   },
 ];
 
@@ -73,7 +74,7 @@ const ContactezNous = () => {
       <section className="relative gradient-hero py-24 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,90%,52%)" }} />
+          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(22,100%,44%)" }} />
         </div>
         <div className="container relative">
           <motion.div
@@ -89,7 +90,7 @@ const ContactezNous = () => {
               <span className="text-gradient-amber">Contactez</span>-nous
             </h1>
             <p className="text-white/60 max-w-xl mx-auto text-lg">
-              Nous sommes disponibles pour répondre à toutes vos questions.
+              Nous sommes disponibles pour répondre à toutes vos questions et planifier une intervention.
             </p>
           </motion.div>
         </div>
@@ -112,10 +113,16 @@ const ContactezNous = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className={`flex flex-col gap-3 rounded-2xl p-5 border ${item.bg} h-full transition-all duration-200 group ${item.href ? "hover:-translate-y-1 hover:shadow-card cursor-pointer" : ""}`}
+                  className={`flex flex-col gap-3 rounded-2xl p-5 border h-full transition-all duration-200 group ${
+                    item.accent
+                      ? "bg-accent/8 border-accent/20"
+                      : "bg-primary/5 border-primary/12"
+                  } ${item.href ? "hover:-translate-y-1 hover:shadow-card cursor-pointer" : ""}`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200 ${item.iconBg}`}>
-                    <item.icon size={18} className={item.color} />
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200 ${
+                    item.accent ? "bg-accent/15 group-hover:bg-accent/25" : "bg-primary/10 group-hover:bg-primary/20"
+                  }`}>
+                    <item.icon size={18} className={item.accent ? "text-accent" : "text-primary"} />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</p>
@@ -138,7 +145,7 @@ const ContactezNous = () => {
       <section className="pb-20">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Contact left */}
+            {/* Left: coordonnées */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -150,14 +157,17 @@ const ContactezNous = () => {
                 <span className="w-8 h-0.5 bg-primary" />
                 Coordonnées
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-extrabold mb-6">
-                Nos <span className="text-gradient">coordonnées</span>
+              <h2 className="text-2xl md:text-3xl font-display font-extrabold mb-4">
+                Parlons de votre{" "}
+                <span className="text-gradient">projet d'arboriculture</span>
               </h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                N'hésitez pas à nous appeler ou écrire. Nous répondons rapidement à toutes les demandes.
+                Que vous ayez des questions sur nos services, que vous souhaitiez planifier une intervention
+                ou discuter d'un projet d'abattage, d'élagage ou tout autre service — notre équipe est à
+                votre écoute. Remplissez notre formulaire ou contactez-nous directement.
               </p>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 <a
                   href="tel:4182551688"
                   className="flex items-center gap-4 group p-4 rounded-xl border border-border/60 bg-white hover:border-primary/30 hover:bg-primary/4 transition-all duration-200"
@@ -167,7 +177,7 @@ const ContactezNous = () => {
                   </div>
                   <div>
                     <p className="font-bold group-hover:text-primary transition-colors">418-255-1688</p>
-                    <p className="text-sm text-muted-foreground">Appelez-nous directement</p>
+                    <p className="text-sm text-muted-foreground">Téléphone ou texto</p>
                   </div>
                   <ArrowRight size={15} className="ml-auto text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </a>
@@ -181,7 +191,7 @@ const ContactezNous = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="font-bold group-hover:text-primary transition-colors truncate">cantinservicesdarbres@gmail.com</p>
-                    <p className="text-sm text-muted-foreground">Réponse sous 24h</p>
+                    <p className="text-sm text-muted-foreground">Courriel</p>
                   </div>
                   <ArrowRight size={15} className="ml-auto shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </a>
@@ -191,8 +201,8 @@ const ContactezNous = () => {
                     <MapPin className="text-primary" size={18} />
                   </div>
                   <div>
-                    <p className="font-bold">Saint-Stanislas-de-Champlain, QC</p>
-                    <p className="text-sm text-muted-foreground">Base d'opérations — Mauricie</p>
+                    <p className="font-bold">Saint-Raymond, QC</p>
+                    <p className="text-sm text-muted-foreground">Base d'opérations — Mauricie & Portneuf</p>
                   </div>
                 </div>
 
@@ -201,14 +211,14 @@ const ContactezNous = () => {
                     <Clock className="text-accent" size={18} />
                   </div>
                   <div>
-                    <p className="font-bold text-accent">Urgence 24h / 7j</p>
-                    <p className="text-sm text-muted-foreground">Lun–Ven 7h–17h · Sam 8h–12h</p>
+                    <p className="font-bold text-accent">Lundi – Dimanche · 8h – 20h</p>
+                    <p className="text-sm text-muted-foreground">Urgence disponible 24h / 7j</p>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Form right */}
+            {/* Form */}
             <motion.div
               id="soumission"
               initial="hidden"
@@ -234,7 +244,7 @@ const ContactezNous = () => {
                   className="space-y-5"
                 >
                   <div>
-                    <label className="block text-sm font-bold mb-2 text-foreground">Type de besoin</label>
+                    <label className="block text-sm font-bold mb-2">Type de besoin</label>
                     <Select>
                       <SelectTrigger className="rounded-xl border-border/60 h-11 font-medium">
                         <SelectValue placeholder="Sélectionnez un service" />
@@ -244,7 +254,7 @@ const ContactezNous = () => {
                         <SelectItem value="elagage">Élagage</SelectItem>
                         <SelectItem value="haubanage">Haubanage</SelectItem>
                         <SelectItem value="taille">Taille</SelectItem>
-                        <SelectItem value="plantation">Plantation</SelectItem>
+                        <SelectItem value="plantation">Plantation et aménagement arboricole</SelectItem>
                         <SelectItem value="fertilisation">Fertilisation</SelectItem>
                         <SelectItem value="urgence">Service d'urgence</SelectItem>
                         <SelectItem value="deneigement">Déneigement sur corde</SelectItem>
@@ -301,8 +311,49 @@ const ContactezNous = () => {
         </div>
       </section>
 
+      {/* ── Zones ─────────────────────────────────────────────── */}
+      <section className="py-16 bg-cream-dark">
+        <div className="container max-w-4xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+              <span className="w-8 h-0.5 bg-primary" />
+              Régions desservies
+              <span className="w-8 h-0.5 bg-primary" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-display font-extrabold">
+              Zones de <span className="text-gradient">service</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={1}
+            variants={fadeUp}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+          >
+            {zones.map((z) => (
+              <div
+                key={z}
+                className="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-border/50 text-sm font-medium hover:bg-primary/6 hover:border-primary/20 hover:text-primary transition-all duration-200"
+              >
+                <MapPin size={13} className="text-primary shrink-0" />
+                <span>{z}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── FAQ ───────────────────────────────────────────────── */}
-      <section className="py-20 bg-cream-dark">
+      <section className="py-20">
         <div className="container max-w-3xl">
           <motion.div
             initial="hidden"

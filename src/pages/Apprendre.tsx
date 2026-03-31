@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ImageIcon, CheckCircle2 } from "lucide-react";
+import { ImageIcon, CheckCircle2, Lightbulb, AlertCircle } from "lucide-react";
 
 const sections = [
   {
@@ -9,8 +9,19 @@ const sections = [
     title: "Abattage",
     badge: "Service principal",
     image: "",
-    desc: "L'abattage d'arbres est une opération délicate qui nécessite une expertise professionnelle. Nos arboristes certifiés évaluent chaque situation pour déterminer la méthode la plus sécuritaire.",
-    items: ["Abattage conventionnel", "Démontage en espace restreint", "Essouchage", "Nettoyage complet du site"],
+    desc: "L'abattage d'arbres est une opération délicate qui nécessite une expertise professionnelle. Nos arboristes diplômés évaluent chaque situation pour choisir la méthode la plus sécuritaire. Rappelons que l'arbre crée de l'ombre, bloque les bourrasques de vent, crée de l'intimité, et peut prendre bien plus que le cours d'une vie pour se développer à maturité — nous traitons chaque abattage avec soin.",
+    items: ["Démontage d'arbre en grimpe", "Abattage par le pied", "Déboisement résidentiel (construction)", "Déboisement pour chemin privé", "Nettoyage pour érablière"],
+    subSections: [
+      {
+        title: "Services complémentaires",
+        items: ["Élimination complète de la souche", "Déchiquetage de branches et résidus", "Manutention complète du bois"],
+      },
+      {
+        title: "Ai-je besoin d'un permis?",
+        isInfo: true,
+        text: "Un certificat d'autorisation est généralement obligatoire avant d'abattre un arbre selon votre municipalité — le propriétaire doit souvent faire la demande. Nous vous assistons dans ce processus, pouvons agir comme mandataire et produire un rapport professionnel. Exceptions fréquentes : arbre mort, dangereux ou malade (agrile du frêne), nuisant à une construction autorisée ou planté trop près d'infrastructures. Certaines villes exigent la plantation d'un nouvel arbre pour chaque arbre abattu afin de maintenir la canopée.",
+      },
+    ],
     accent: "primary",
   },
   {
@@ -18,17 +29,30 @@ const sections = [
     title: "Élagage",
     badge: "Entretien régulier",
     image: "",
-    desc: "L'élagage consiste à retirer les branches mortes, malades ou dangereuses pour maintenir la santé et l'esthétique de vos arbres. Un élagage régulier prévient les risques de chutes de branches.",
-    items: ["Élagage d'entretien", "Élagage de formation", "Élagage sanitaire", "Taille de réduction"],
+    desc: "L'élagage consiste à retirer les branches mortes, malades ou dangereuses pour maintenir la santé et l'esthétique de vos arbres. Un élagage régulier prévient les risques de chutes de branches et prolonge la vie de l'arbre.",
+    items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Taille de réduction", "Descente contrôlée sur corde"],
     accent: "primary",
   },
   {
     id: "haubanage",
     title: "Haubanage",
-    badge: "Sécurité",
+    badge: "Sécurité & prévention",
     image: "",
-    desc: "Le haubanage permet de stabiliser les arbres fragilisés ou à risque de bris en installant des câbles et des tiges de soutien dans la canopée.",
-    items: ["Installation de câbles dynamiques", "Haubanage de sécurité", "Évaluation des risques", "Suivi et ajustement"],
+    desc: "Le haubanage permet de sauvegarder des arbres matures en réduisant le stress mécanique causé par les vents violents et le verglas. C'est souvent une solution plus économique que l'abattage complet, tout en préservant la valeur esthétique et l'ombre de votre propriété.",
+    items: ["Installation de câbles dynamiques", "Haubanage de sécurité structurale", "Évaluation des risques", "Suivi et ajustement annuel"],
+    subSections: [
+      {
+        title: "Exemples de situations pouvant nécessiter un haubanage",
+        items: [
+          "Arbres en bord de sentier piéton",
+          "Arbres surplombant un stationnement",
+          "Arbres surplombant un bâtiment",
+          "Branches charpentières avec signes de faiblesse",
+          "Arbres à fort potentiel mais fragilisés",
+        ],
+        note: "Sachez que cette opération ne blesse pas l'arbre. Saviez-vous qu'un arbre penché naturellement est parfaitement balancé? Les arbres s'adaptent à leur environnement en équilibrant leurs racines et leur structure hors terre.",
+      },
+    ],
     accent: "primary",
   },
   {
@@ -36,17 +60,33 @@ const sections = [
     title: "Taille",
     badge: "Ornemental & fruitier",
     image: "",
-    desc: "La taille d'arbres fruitiers, de haies et d'arbustes ornementaux favorise une croissance saine et une production optimale de fruits.",
-    items: ["Taille d'arbres fruitiers", "Taille de haies", "Taille ornementale", "Taille de rajeunissement"],
+    desc: "La taille de haies et d'arbustes ornementaux favorise une croissance saine et une esthétique impeccable.",
+    items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
+    subSections: [
+      {
+        title: "Gardez le contrôle sur votre investissement.",
+        isFact: true,
+        text: "Une haie de cèdres peut gagner de 12 à 24 pouces de volume chaque année si elle n'est pas entretenue. Une taille annuelle rigoureuse permet de limiter cette expansion à seulement 2 à 4 pouces, tout en densifiant le feuillage.",
+      },
+      {
+        title: "Maximisez vos récoltes et vos floraisons",
+        text: "Un arbre laissé à lui-même produit souvent moins de fruits et des fleurs moins éclatantes. Que ce soit pour votre vieux pommier familial dans Portneuf ou vos arbustes ornementaux en Mauricie, nous maximisons la beauté et la générosité de votre terrain.",
+        items: [
+          "Taille de dormance (fin hiver : mars à début avril) — préparez la prochaine récolte. Idéal pour pommiers, poiriers et pruniers : voir la structure sans les feuilles et stimuler une croissance vigoureuse.",
+          "Taille estivale — après la récolte, pour modérer la croissance et aérer la couronne.",
+          "Taille de formation (arbres jeunes) — définir la structure à long terme.",
+        ],
+      },
+    ],
     accent: "primary",
   },
   {
     id: "plantation",
-    title: "Plantation",
+    title: "Plantation et aménagement arboricole",
     badge: "Aménagement",
     image: "",
-    desc: "Nous vous aidons à choisir les bonnes espèces d'arbres et d'arbustes adaptées à votre terrain, au climat et à vos objectifs paysagers.",
-    items: ["Sélection d'espèces", "Préparation du sol", "Plantation professionnelle", "Conseils d'entretien post-plantation"],
+    desc: "Nous vous aidons à choisir les bonnes espèces d'arbres et d'arbustes adaptées à votre terrain, au climat et à vos objectifs paysagers. Plantations réalisées dans les règles de l'art.",
+    items: ["Sélection parmi nos pépinières partenaires", "Préparation et amendement du sol", "Plantation professionnelle", "Aménagement horticole", "Conseils d'entretien post-plantation"],
     accent: "primary",
   },
   {
@@ -54,8 +94,8 @@ const sections = [
     title: "Fertilisation",
     badge: "Santé du sol",
     image: "",
-    desc: "La fertilisation adaptée renforce la vitalité de vos arbres et améliore la qualité de votre sol. Nos experts analysent votre terrain pour recommander le traitement idéal.",
-    items: ["Analyse du sol", "Fertilisation profonde", "Amendement organique", "Programme d'entretien annuel"],
+    desc: "La fertilisation adaptée renforce la vitalité de vos arbres et améliore la qualité de votre sol. Nos experts analysent votre terrain pour recommander le traitement idéal au moment optimal.",
+    items: ["Analyse des carences du sol", "Fertilisation profonde", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies", "Programme d'entretien annuel"],
     accent: "primary",
   },
   {
@@ -63,8 +103,8 @@ const sections = [
     title: "Services d'urgence",
     badge: "Disponible 24/7",
     image: "",
-    desc: "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété.",
-    items: ["Intervention 24/7", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête"],
+    desc: "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
+    items: ["Intervention 24h/7j", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête ou verglas"],
     accent: "accent",
   },
   {
@@ -72,8 +112,8 @@ const sections = [
     title: "Déneigement sur corde",
     badge: "Service hivernal",
     image: "",
-    desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde pour retirer la neige et la glace des toitures en hauteur de manière sécuritaire.",
-    items: ["Déneigement de toitures", "Retrait de glace", "Accès sur corde", "Prévention des dommages"],
+    desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
+    items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace et de surcharges", "Prévention des affaissements de toiture"],
     accent: "accent",
   },
 ];
@@ -96,7 +136,7 @@ const Apprendre = () => {
       <section className="relative gradient-hero py-24 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,90%,52%)" }} />
+          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(22,100%,44%)" }} />
         </div>
         <div className="container relative">
           <motion.div
@@ -108,7 +148,7 @@ const Apprendre = () => {
               Guide complet
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              En <span className="text-gradient-amber">apprendre</span> davantage
+              Apprendre sur l'entretien <span className="text-gradient-amber">de l'arbre</span>
             </h1>
             <p className="text-white/60 max-w-xl mx-auto text-lg">
               Découvrez en détail chacun de nos services d'arboriculture professionnelle.
@@ -122,7 +162,7 @@ const Apprendre = () => {
         </div>
       </section>
 
-      {/* ── Sections alternées ────────────────────────────────── */}
+      {/* ── Sections ─────────────────────────────────────────── */}
       {sections.map((s, i) => (
         <section
           key={s.id}
@@ -135,58 +175,102 @@ const Apprendre = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, ease: "easeOut" }}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center`}
             >
-              {/* Text */}
-              <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-5 px-3 py-1.5 rounded-full border ${
-                  s.accent === "accent"
-                    ? "text-accent bg-accent/10 border-accent/20"
-                    : "text-primary bg-primary/8 border-primary/15"
-                }`}>
-                  {s.badge}
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-5">
-                  {s.title}
-                </h2>
-                <p className="text-muted-foreground mb-8 leading-relaxed text-base">{s.desc}</p>
-                <ul className="space-y-3">
-                  {s.items.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm font-medium">
-                      <CheckCircle2
-                        size={18}
-                        className={s.accent === "accent" ? "text-accent shrink-0" : "text-primary shrink-0"}
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Image */}
-              <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                {s.image ? (
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    className="rounded-2xl shadow-card-hover w-full h-80 object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className={`rounded-2xl w-full h-80 flex flex-col items-center justify-center gap-3 border-2 border-dashed relative overflow-hidden ${
-                    s.accent === "accent" ? "border-accent/25 bg-accent/5" : "border-primary/20 bg-primary/4"
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-start`}>
+                {/* Text */}
+                <div className={i % 2 === 1 ? "lg:order-2" : ""}>
+                  <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-5 px-3 py-1.5 rounded-full border ${
+                    s.accent === "accent"
+                      ? "text-accent bg-accent/10 border-accent/20"
+                      : "text-primary bg-primary/8 border-primary/15"
                   }`}>
-                    <div className="absolute inset-0 opacity-[0.03]"
-                      style={{ backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)", backgroundSize: "24px 24px" }}
-                    />
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
-                      s.accent === "accent" ? "bg-accent/15" : "bg-primary/10"
-                    }`}>
-                      <ImageIcon size={28} className={s.accent === "accent" ? "text-accent" : "text-primary"} />
-                    </div>
-                    <span className="text-sm font-semibold text-muted-foreground">Photo — {s.title}</span>
+                    {s.badge}
                   </div>
-                )}
+                  <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-5">
+                    {s.title}
+                  </h2>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{s.desc}</p>
+
+                  {/* Plus précisément */}
+                  {s.items.length > 0 && (
+                    <div className="mb-6">
+                      <p className="text-sm font-bold uppercase tracking-wider text-foreground/60 mb-3">Plus précisément</p>
+                      <ul className="space-y-2.5">
+                        {s.items.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-sm font-medium">
+                            <CheckCircle2
+                              size={16}
+                              className={`mt-0.5 shrink-0 ${s.accent === "accent" ? "text-accent" : "text-primary"}`}
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Sub-sections */}
+                  {s.subSections?.map((sub, si) => (
+                    <div
+                      key={si}
+                      className={`mt-6 rounded-2xl p-5 border ${
+                        sub.isInfo
+                          ? "bg-primary/4 border-primary/15"
+                          : sub.isFact
+                          ? "bg-accent/6 border-accent/20"
+                          : "bg-muted/40 border-border/60"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-3">
+                        {sub.isInfo ? (
+                          <AlertCircle size={16} className="text-primary shrink-0" />
+                        ) : (
+                          <Lightbulb size={16} className="text-accent shrink-0" />
+                        )}
+                        <p className="text-sm font-bold">{sub.title}</p>
+                      </div>
+                      {sub.text && (
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{sub.text}</p>
+                      )}
+                      {sub.note && (
+                        <p className="text-xs text-muted-foreground italic mt-3 leading-relaxed">{sub.note}</p>
+                      )}
+                      {sub.items && (
+                        <ul className="space-y-2 mt-2">
+                          {sub.items.map((item: string) => (
+                            <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Image */}
+                <div className={i % 2 === 1 ? "lg:order-1" : ""}>
+                  {s.image ? (
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      className="rounded-2xl shadow-card w-full h-96 object-cover sticky top-28"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className={`rounded-2xl w-full h-80 lg:h-96 flex flex-col items-center justify-center gap-3 border-2 border-dashed sticky top-28 ${
+                      s.accent === "accent" ? "border-accent/25 bg-accent/5" : "border-primary/20 bg-primary/4"
+                    }`}>
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
+                        s.accent === "accent" ? "bg-accent/15" : "bg-primary/10"
+                      }`}>
+                        <ImageIcon size={28} className={s.accent === "accent" ? "text-accent" : "text-primary"} />
+                      </div>
+                      <span className="text-sm font-semibold text-muted-foreground">Photo — {s.title}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           </div>

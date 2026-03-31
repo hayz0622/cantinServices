@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   TreePine, Scissors, Cable, Flower2, Sprout, Droplets,
   AlertTriangle, Snowflake, Award, HeartHandshake, Clock,
-  MapPin, Phone, ArrowRight, CheckCircle2, Star,
+  MapPin, Phone, ArrowRight, CheckCircle2, ShieldCheck,
 } from "lucide-react";
 
 const services = [
@@ -11,7 +11,7 @@ const services = [
   { icon: Scissors, label: "Élagage", desc: "Taille et entretien de vos arbres", color: "from-emerald-500/10 to-emerald-600/5" },
   { icon: Cable, label: "Haubanage", desc: "Stabilisation des arbres fragilisés", color: "from-teal-500/10 to-teal-600/5" },
   { icon: Flower2, label: "Taille", desc: "Taille d'arbres fruitiers et ornementaux", color: "from-lime-500/10 to-lime-600/5" },
-  { icon: Sprout, label: "Plantation", desc: "Plantation d'arbres et arbustes", color: "from-green-500/10 to-green-600/5" },
+  { icon: Sprout, label: "Plantation et aménagement arboriculture", desc: "Plantation et aménagement d'espaces verts durables", color: "from-green-500/10 to-green-600/5" },
   { icon: Droplets, label: "Fertilisation", desc: "Fertilisation et soins du sol", color: "from-cyan-500/10 to-cyan-600/5" },
   { icon: AlertTriangle, label: "Services d'urgence", desc: "Intervention rapide 24/7", color: "from-amber-500/10 to-amber-600/5" },
   { icon: Snowflake, label: "Déneigement sur corde", desc: "Déneigement de toitures en hauteur", color: "from-sky-500/10 to-sky-600/5" },
@@ -19,33 +19,35 @@ const services = [
 
 const whyChoose = [
   {
-    icon: Award,
-    title: "Certifications ISA",
-    desc: "Arboristes certifiés ISA avec formation continue et équipements professionnels à la pointe.",
-    stat: "100%",
-    statLabel: "Certifiés",
+    icon: ShieldCheck,
+    title: "Nos certifications",
+    desc: "Technicien avec certification en travail sur corde SPRAT et technicien diplômé en élagage et en arboriculture.",
+    stat: "SPRAT",
+    statLabel: "Certifié",
   },
   {
     icon: HeartHandshake,
-    title: "Service client",
-    desc: "Écoute, transparence et respect de vos besoins à chaque étape du projet.",
+    title: "Service client exceptionnel",
+    desc: "Nous prenons le temps de comprendre vos besoins et laissons l'endroit plus propre qu'à notre arrivée. Téléphone, texto et courriel disponibles.",
     stat: "5★",
     statLabel: "Satisfaction",
   },
   {
     icon: Clock,
-    title: "Disponibilité",
-    desc: "Service d'urgence 24/7, disponible même les fins de semaine et jours fériés.",
-    stat: "24/7",
-    statLabel: "Urgences",
+    title: "Disponibilité et flexibilité",
+    desc: "Ouverts du lundi au dimanche durant 4 saisons. Service d'urgence disponible en tout temps pour les situations critiques.",
+    stat: "7j/7",
+    statLabel: "Disponible",
   },
 ];
 
 const zones = [
-  "Saint-Stanislas-de-Champlain", "Batiscan", "Sainte-Geneviève-de-Batiscan",
-  "Champlain", "Saint-Prosper", "Saint-Maurice", "Cap-de-la-Madeleine",
-  "Trois-Rivières", "Shawinigan", "Saint-Tite", "Hérouxville",
-  "Saint-Narcisse", "Saint-Adelphe", "Sainte-Thècle",
+  "Mauricie", "Mékinac", "Saint-Tite", "Shawinigan",
+  "Saint-Marc-des-Carrières", "Saint-Ubalde", "Rivière-à-Pierre",
+  "Lac-aux-Sables", "Saint-Maurice", "Trois-Rivières",
+  "Sainte-Catherine", "Lac Sept Îles", "Lac-Saint-Joseph",
+  "Portneuf", "Saint-Raymond", "Pont-Rouge", "Québec",
+  "Et davantage…",
 ];
 
 const fadeUp = {
@@ -62,10 +64,9 @@ const Index = () => {
     <div>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[88vh] flex items-center justify-center text-center overflow-hidden gradient-hero">
-        {/* Background geometric pattern */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 -left-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/4 -right-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,90%,52%)" }} />
+          <div className="absolute bottom-1/4 -right-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(22,100%,44%)" }} />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -82,35 +83,51 @@ const Index = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-bold px-4 py-2 rounded-full mb-8"
           >
-            <Star size={11} className="text-accent fill-accent" />
-            Arboristes certifiés ISA — Mauricie
-            <Star size={11} className="text-accent fill-accent" />
+            <CheckCircle2 size={12} className="text-accent" />
+            Certification SPRAT · Diplômé en arboriculture
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold text-white mb-6 leading-[1.08] tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold text-white mb-3 leading-[1.08] tracking-tight"
           >
-            Services d'émondage à<br />
-            <span className="text-gradient-amber">Saint-Stanislas</span>
+            Cantin Services D'arbres
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl md:text-3xl font-display font-bold text-white/80 mb-2"
           >
-            Experts en soins d'arbres résidentiels et commerciaux depuis des années.
-            Votre propriété entre de bonnes mains.
+            Services d'émondage
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.28 }}
+            className="text-xl md:text-2xl font-display font-semibold mb-8"
+          >
+            à <span className="text-gradient-amber">Saint-Stanislas-de-Champlain</span>
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="text-base md:text-lg text-white/65 max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            Nous comprenons l'importance de garder vos arbres en santé et en sécurité.
+            Au service des propriétaires résidentiels et gestionnaires municipaux. Disponibles 7 jours sur 7.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
@@ -120,17 +137,16 @@ const Index = () => {
               Contactez-nous
               <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a
-              href="tel:4182551688"
-              className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/25 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/20 transition-all duration-200"
+            <Link
+              to="/contactez-nous#soumission"
+              className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
             >
-              <Phone size={16} />
-              418-255-1688
-            </a>
+              Parlez-nous de votre projet ici!
+              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
         </div>
 
-        {/* Wave bottom */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
             <path d="M0 60L1440 60L1440 20C1200 55 900 0 720 20C540 40 240 0 0 20L0 60Z" fill="white" />
@@ -173,10 +189,14 @@ const Index = () => {
               Des racines{" "}
               <span className="text-gradient">à la cime</span>
             </h2>
+            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
+              Chez Cantin Services D'arbres, nous offrons des services d'arboriculture complets adaptés à vos besoins.
+              Notre équipe s'engage à préserver la santé et la beauté de vos arbres tout en assurant la sécurité
+              de votre propriété.
+            </p>
             <p className="text-muted-foreground leading-relaxed text-lg">
-              Chez Cantin Services D'arbres, nous offrons des services professionnels d'entretien d'arbres
-              dans la région de la Mauricie. Notre équipe d'arboristes certifiés s'engage à préserver
-              la santé et la beauté de vos arbres tout en assurant la sécurité de votre propriété.
+              Nous servons les propriétaires résidentiels et les gestionnaires municipaux de la Mauricie,
+              Mékinac et Portneuf. Disponibles 7 jours sur 7, même en cas d'urgence.
             </p>
           </motion.div>
         </div>
@@ -214,7 +234,7 @@ const Index = () => {
               >
                 <Link
                   to="/nos-services"
-                  className={`group flex flex-col items-center text-center bg-white rounded-2xl p-7 border border-border/60 shadow-card card-hover h-full`}
+                  className="group flex flex-col items-center text-center bg-white rounded-2xl p-7 border border-border/60 shadow-card card-hover h-full"
                 >
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-5 border border-primary/10 group-hover:scale-110 transition-transform duration-300`}>
                     <s.icon className="text-primary" size={28} />
@@ -222,7 +242,7 @@ const Index = () => {
                   <h3 className="font-display font-bold text-base mb-2">{s.label}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                   <div className="mt-4 flex items-center gap-1 text-primary text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    En savoir plus <ArrowRight size={11} />
+                    En savoir + <ArrowRight size={11} />
                   </div>
                 </Link>
               </motion.div>
@@ -231,7 +251,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CTA mid ──────────────────────────────────────────────── */}
+      {/* ── Reassurance CTA ──────────────────────────────────────── */}
       <section className="py-20">
         <div className="container text-center max-w-2xl">
           <motion.div
@@ -242,10 +262,13 @@ const Index = () => {
           >
             <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-4">
               Prendre soin de vos arbres,{" "}
-              <span className="text-gradient">c'est notre passion</span>
+              <span className="text-gradient">c'est aussi prendre soin de vous.</span>
             </h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              Faites confiance à nos arboristes certifiés pour tous vos besoins en entretien d'arbres.
+            <p className="text-muted-foreground mb-2 text-lg">
+              Notre équipe est là pour vous aider.
+            </p>
+            <p className="text-muted-foreground mb-8">
+              Faites confiance à nos experts diplômés pour tous vos besoins en entretien d'arbres.
             </p>
             <a
               href="tel:4182551688"
@@ -279,7 +302,7 @@ const Index = () => {
             </div>
             <h2 className="text-3xl md:text-5xl font-display font-extrabold">
               Pourquoi choisir{" "}
-              <span className="text-gradient-amber">Cantin</span>
+              <span className="text-gradient-amber">Cantin Services D'arbres?</span>
             </h2>
           </motion.div>
 
@@ -310,15 +333,9 @@ const Index = () => {
 
       {/* ── Free quote CTA ───────────────────────────────────────── */}
       <section className="gradient-primary py-16 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-              backgroundSize: "32px 32px",
-            }}
-          />
-        </div>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }}
+        />
         <div className="container relative text-center text-white">
           <motion.div
             initial="hidden"
@@ -327,10 +344,13 @@ const Index = () => {
             variants={fadeUp}
           >
             <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-3">
-              Soumission 100% gratuite
+              Obtenez une soumission gratuite!
             </h2>
-            <p className="mb-8 text-white/80 text-lg">
-              Obtenez une évaluation sans frais pour vos travaux d'arboriculture.
+            <p className="mb-3 text-white/80 text-lg">
+              Projet d'élagage, d'abattage ou d'entretien d'arbres?
+            </p>
+            <p className="mb-8 text-white/65">
+              Nous évaluons vos besoins et proposons des solutions adaptées, sans frais.
             </p>
             <Link
               to="/contactez-nous#soumission"
@@ -394,7 +414,7 @@ const Index = () => {
           >
             <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-4">
               Améliorez la santé{" "}
-              <span className="text-gradient">de votre terrain</span>
+              <span className="text-gradient">de votre terrain</span> avec un expert dédié!
             </h2>
             <p className="text-muted-foreground mb-8 text-lg">
               Contactez-nous dès aujourd'hui pour une consultation gratuite et personnalisée.
