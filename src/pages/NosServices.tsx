@@ -6,56 +6,72 @@ const services = [
   {
     icon: TreePine,
     label: "Abattage",
-    desc: "Abattage sécuritaire d'arbres dangereux, morts ou indésirables. Nous utilisons des techniques de démontage pour les espaces restreints.",
+    intro: "Arbres dangereux ou encombrants",
+    desc: "Nos professionnels utilisent des techniques de démontage sécuritaire adaptées à chaque situation. Chaque cas est évalué avec soin pour choisir la méthode la plus appropriée — abattage par le pied ou démontage en espace restreint.",
+    items: ["Abattage conventionnel par le pied", "Démontage en espace restreint", "Essouchage", "Nettoyage complet du site"],
     hash: "abattage",
     gradient: "from-green-500/15 to-green-700/5",
   },
   {
     icon: Scissors,
     label: "Élagage",
-    desc: "Taille d'entretien et élagage de formation pour maintenir la santé et l'esthétique de vos arbres.",
+    intro: "Assurez la vitalité et la structure optimale de vos arbres",
+    desc: "Relevage, élagage esthétique pour retirer les branches mortes et malades, et interventions nécessaires lorsqu'une branche nuit aux fils électriques, à votre maison ou à votre stationnement. Descente contrôlée sur corde disponible.",
+    items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Descente contrôlée sur corde"],
     hash: "elagage",
     gradient: "from-emerald-500/15 to-emerald-700/5",
   },
   {
     icon: Cable,
     label: "Haubanage",
-    desc: "Installation de câbles et de tiges pour stabiliser les arbres à risque de bris ou de chute.",
+    intro: "Soyons préventifs — conservez la beauté de votre arbre",
+    desc: "Lorsque des branches charpentières présentent des signes de faiblesse structurale, un câble d'acier permet de limiter les risques de chute — idéal pour les arbres en bord de sentier piéton, surplombant un stationnement ou des bâtiments.",
+    items: ["Câble d'acier pour branches charpentières", "Arbres en bord de sentier piéton", "Arbres surplombant stationnements", "Évaluation des risques structuraux"],
     hash: "haubanage",
     gradient: "from-teal-500/15 to-teal-700/5",
   },
   {
     icon: Flower2,
     label: "Taille",
-    desc: "Taille d'arbres fruitiers, de haies et d'arbustes ornementaux pour une croissance optimale.",
+    intro: "Conservez la densité et l'apparence de vos arbres",
+    desc: "Haies de conifères ou feuillus, taille de formation et taille d'arbres fruitiers pour une croissance optimale. Une haie non entretenue peut gagner jusqu'à 24 pouces par an — une taille annuelle limite cette expansion à 2 à 4 pouces.",
+    items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
     hash: "taille",
     gradient: "from-lime-500/15 to-lime-700/5",
   },
   {
     icon: Sprout,
-    label: "Plantation",
-    desc: "Sélection et plantation d'arbres et d'arbustes adaptés à votre terrain et au climat.",
+    label: "Plantation et aménagement arboricole",
+    intro: "Créez des espaces verts durables",
+    desc: "Plantations réalisées dans les règles de l'art. Choisissez vos arbres parmi nos pépinières partenaires. Aménagement horticole et conseils pour assurer le futur de vos arbres.",
+    items: ["Sélection parmi pépinières partenaires", "Plantation professionnelle", "Aménagement horticole", "Conseils post-plantation"],
     hash: "plantation",
     gradient: "from-green-600/15 to-green-800/5",
   },
   {
     icon: Droplets,
     label: "Fertilisation",
-    desc: "Analyse du sol et fertilisation adaptée pour renforcer la vitalité de vos arbres.",
+    intro: "Revitalisez vos arbres et stimulez leur croissance",
+    desc: "Apports nutritifs adaptés aux besoins réels de vos arbres : analyse des carences, fertilisants appropriés au moment optimal. Traitement contre les maladies, fertilisation granulaire et par injections disponibles.",
+    items: ["Analyse des carences du sol", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies"],
     hash: "fertilisation",
     gradient: "from-cyan-500/15 to-cyan-700/5",
   },
   {
     icon: AlertTriangle,
     label: "Services d'urgence",
-    desc: "Intervention rapide 24/7 pour les arbres dangereux suite à des tempêtes ou bris.",
+    intro: "Reprenez rapidement le contrôle des situations critiques",
+    desc: "Tempête, bris de branche menaçant votre maison, arbre tombé bloquant votre accès — nous intervenons sans délai pour sécuriser votre propriété. Disponible 24h/24, 7j/7.",
+    items: ["Intervention 24/7", "Dégagement après tempête", "Stabilisation d'arbres dangereux", "Sécurisation de la propriété"],
     hash: "urgence",
     gradient: "from-amber-500/15 to-amber-700/5",
   },
   {
     icon: Snowflake,
     label: "Déneigement sur corde",
-    desc: "Déneigement de toitures en hauteur avec des techniques d'accès sur corde.",
+    intro: "Libérez vos toitures des accumulations dangereuses",
+    desc: "Techniques d'accès sur corde spécialisées pour les zones difficiles d'accès, sans endommager votre propriété ni compromettre notre sécurité. Évite les surcharges pouvant causer des affaissements.",
+    items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace", "Prévention des surcharges"],
     hash: "deneigement",
     gradient: "from-sky-500/15 to-sky-700/5",
   },
@@ -77,7 +93,7 @@ const NosServices = () => {
       <section className="relative gradient-hero py-24 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,90%,52%)" }} />
+          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(22,100%,44%)" }} />
         </div>
         <div className="container relative">
           <motion.div
@@ -92,13 +108,13 @@ const NosServices = () => {
               Nos <span className="text-gradient-amber">Services</span>
             </h1>
             <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
-              Des solutions complètes pour l'entretien de vos arbres et de votre terrain.
+              Des solutions complètes adaptées à vos besoins et à ceux de vos arbres.
             </p>
             <Link
               to="/contactez-nous#soumission"
               className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
             >
-              Soumission gratuite
+              Soumission gratuite ici!
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -128,47 +144,75 @@ const NosServices = () => {
               Préservez la vitalité{" "}
               <span className="text-gradient">de vos arbres</span>
             </h2>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              Notre équipe d'arboristes certifiés offre une gamme complète de services pour assurer
-              la santé, la sécurité et la beauté de vos arbres.
+            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
+              Que ce soit pour l'entretien régulier de vos arbres, un projet d'aménagement paysager
+              ou une intervention urgente, nous offrons des solutions complètes adaptées à vos besoins.
             </p>
+            <h3 className="text-xl font-display font-bold text-foreground mt-8">
+              De quoi avez-vous besoin?
+            </h3>
           </motion.div>
         </div>
       </section>
 
-      {/* ── Services grid ─────────────────────────────────────── */}
-      <section className="py-6 pb-24 bg-cream-dark">
+      {/* ── Services détaillés ────────────────────────────────── */}
+      <section className="pb-24 bg-cream-dark pt-4">
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {services.map((s, i) => (
               <motion.div
                 key={s.label}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                custom={i}
+                custom={i % 4}
                 variants={fadeUp}
               >
-                <Link
-                  to={`/apprendre#${s.hash}`}
-                  className="group flex flex-col items-center text-center bg-white rounded-2xl p-7 border border-border/60 shadow-card card-hover h-full"
-                >
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-5 border border-primary/10 group-hover:scale-110 transition-transform duration-300`}>
-                    <s.icon className="text-primary" size={28} />
+                <div className="group flex flex-col bg-white rounded-2xl p-7 border border-border/60 shadow-card card-hover h-full">
+                  <div className="flex items-start gap-5 mb-5">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shrink-0 border border-primary/10 group-hover:scale-105 transition-transform duration-300`}>
+                      <s.icon className="text-primary" size={26} />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-lg leading-tight">{s.label}</h3>
+                      <p className="text-sm text-accent font-semibold mt-0.5">{s.intro}</p>
+                    </div>
                   </div>
-                  <h3 className="font-display font-bold text-base mb-2">{s.label}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-primary text-xs font-bold border border-primary/20 rounded-lg px-3 py-1.5 group-hover:bg-primary group-hover:text-white transition-all duration-200">
-                    Voir les détails <ArrowRight size={11} />
+
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">{s.desc}</p>
+
+                  <ul className="space-y-2 mb-6">
+                    {s.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-sm font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex gap-3 mt-auto">
+                    <Link
+                      to={`/apprendre#${s.hash}`}
+                      className="flex-1 flex items-center justify-center gap-1.5 text-primary text-xs font-bold border border-primary/20 rounded-lg px-3 py-2.5 hover:bg-primary hover:text-white transition-all duration-200 group/btn"
+                    >
+                      En savoir +
+                      <ArrowRight size={11} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
+                    <Link
+                      to="/contactez-nous#soumission"
+                      className="flex items-center gap-1.5 text-xs font-bold bg-accent/10 text-accent border border-accent/20 rounded-lg px-3 py-2.5 hover:bg-accent hover:text-white transition-all duration-200"
+                    >
+                      Ici!
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ───────────────────────────────────────────────── */}
+      {/* ── CTA finale ────────────────────────────────────────── */}
       <section className="gradient-primary py-16 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }}
@@ -180,8 +224,13 @@ const NosServices = () => {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold mb-3">Besoin d'un service?</h2>
-            <p className="mb-8 text-white/80 text-lg">Contactez-nous pour une évaluation gratuite de vos besoins.</p>
+            <h2 className="text-2xl md:text-3xl font-display font-extrabold mb-3">
+              Collaborez avec nos leaders en arboriculture
+            </h2>
+            <p className="mb-2 text-white/80 text-base">
+              à Saint-Raymond et partout ailleurs au Québec.
+            </p>
+            <p className="mb-8 text-white/65 text-sm">Contactez-nous pour une évaluation gratuite de vos besoins.</p>
             <Link
               to="/contactez-nous"
               className="inline-flex items-center gap-2.5 bg-white text-primary px-10 py-4 rounded-xl font-bold hover:bg-white/90 transition-all duration-200 shadow-lg hover:-translate-y-0.5 group"

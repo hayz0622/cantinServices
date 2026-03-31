@@ -14,7 +14,7 @@ const navLinks = [
       { label: "Élagage", path: "/apprendre#elagage" },
       { label: "Haubanage", path: "/apprendre#haubanage" },
       { label: "Taille", path: "/apprendre#taille" },
-      { label: "Plantation", path: "/apprendre#plantation" },
+      { label: "Plantation et aménagement arboricole", path: "/apprendre#plantation" },
       { label: "Fertilisation", path: "/apprendre#fertilisation" },
       { label: "Services d'urgence", path: "/apprendre#urgence" },
       { label: "Déneigement sur corde", path: "/apprendre#deneigement" },
