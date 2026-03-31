@@ -1,20 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  ArrowIcon,
-  CableIcon,
-  EmergencyIcon,
-  PlantationIcon,
-  PruningIcon,
-  SnowRopeIcon,
-  SoilIcon,
-  TreeCutIcon,
-  TrimIcon,
-} from "@/components/ModernIcons";
+import { TreePine, Scissors, Cable, Flower2, Sprout, Droplets, AlertTriangle, Snowflake, ArrowRight } from "lucide-react";
 
 const services = [
   {
-    icon: TreeCutIcon,
+    icon: TreePine,
     label: "Abattage",
     intro: "Arbres dangereux ou encombrants",
     desc: "Nos professionnels utilisent des techniques de démontage sécuritaire adaptées à chaque situation. Chaque cas est évalué avec soin pour choisir la méthode la plus appropriée — abattage par le pied ou démontage en espace restreint.",
@@ -23,7 +13,7 @@ const services = [
     gradient: "from-green-500/15 to-green-700/5",
   },
   {
-    icon: PruningIcon,
+    icon: Scissors,
     label: "Élagage",
     intro: "Assurez la vitalité et la structure optimale de vos arbres",
     desc: "Relevage, élagage esthétique pour retirer les branches mortes et malades, et interventions nécessaires lorsqu'une branche nuit aux fils électriques, à votre maison ou à votre stationnement. Descente contrôlée sur corde disponible.",
@@ -32,7 +22,7 @@ const services = [
     gradient: "from-emerald-500/15 to-emerald-700/5",
   },
   {
-    icon: CableIcon,
+    icon: Cable,
     label: "Haubanage",
     intro: "Soyons préventifs — conservez la beauté de votre arbre",
     desc: "Lorsque des branches charpentières présentent des signes de faiblesse structurale, un câble d'acier permet de limiter les risques de chute — idéal pour les arbres en bord de sentier piéton, surplombant un stationnement ou des bâtiments.",
@@ -41,7 +31,7 @@ const services = [
     gradient: "from-teal-500/15 to-teal-700/5",
   },
   {
-    icon: TrimIcon,
+    icon: Flower2,
     label: "Taille",
     intro: "Conservez la densité et l'apparence de vos arbres",
     desc: "Haies de conifères ou feuillus, taille de formation et taille d'arbres fruitiers pour une croissance optimale. Une haie non entretenue peut gagner jusqu'à 24 pouces par an — une taille annuelle limite cette expansion à 2 à 4 pouces.",
@@ -50,7 +40,7 @@ const services = [
     gradient: "from-lime-500/15 to-lime-700/5",
   },
   {
-    icon: PlantationIcon,
+    icon: Sprout,
     label: "Plantation et aménagement arboricole",
     intro: "Créez des espaces verts durables",
     desc: "Plantations réalisées dans les règles de l'art. Choisissez vos arbres parmi nos pépinières partenaires. Aménagement horticole et conseils pour assurer le futur de vos arbres.",
@@ -59,7 +49,7 @@ const services = [
     gradient: "from-green-600/15 to-green-800/5",
   },
   {
-    icon: SoilIcon,
+    icon: Droplets,
     label: "Fertilisation",
     intro: "Revitalisez vos arbres et stimulez leur croissance",
     desc: "Apports nutritifs adaptés aux besoins réels de vos arbres : analyse des carences, fertilisants appropriés au moment optimal. Traitement contre les maladies, fertilisation granulaire et par injections disponibles.",
@@ -68,7 +58,7 @@ const services = [
     gradient: "from-cyan-500/15 to-cyan-700/5",
   },
   {
-    icon: EmergencyIcon,
+    icon: AlertTriangle,
     label: "Services d'urgence",
     intro: "Reprenez rapidement le contrôle des situations critiques",
     desc: "Tempête, bris de branche menaçant votre maison, arbre tombé bloquant votre accès — nous intervenons sans délai pour sécuriser votre propriété. Disponible 24h/24, 7j/7.",
@@ -77,7 +67,7 @@ const services = [
     gradient: "from-amber-500/15 to-amber-700/5",
   },
   {
-    icon: SnowRopeIcon,
+    icon: Snowflake,
     label: "Déneigement sur corde",
     intro: "Libérez vos toitures des accumulations dangereuses",
     desc: "Techniques d'accès sur corde spécialisées pour les zones difficiles d'accès, sans endommager votre propriété ni compromettre notre sécurité. Évite les surcharges pouvant causer des affaissements.",
@@ -125,7 +115,7 @@ const NosServices = () => {
               className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
             >
               Soumission gratuite ici!
-              <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -206,7 +196,7 @@ const NosServices = () => {
                       className="flex-1 flex items-center justify-center gap-1.5 text-primary text-xs font-bold border border-primary/20 rounded-lg px-3 py-2.5 hover:bg-primary hover:text-white transition-all duration-200 group/btn"
                     >
                       En savoir +
-                      <ArrowIcon size={11} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                      <ArrowRight size={11} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </Link>
                     <Link
                       to="/contactez-nous#soumission"
@@ -246,7 +236,7 @@ const NosServices = () => {
               className="inline-flex items-center gap-2.5 bg-white text-primary px-10 py-4 rounded-xl font-bold hover:bg-white/90 transition-all duration-200 shadow-lg hover:-translate-y-0.5 group"
             >
               Contactez-nous
-              <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>

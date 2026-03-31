@@ -1,51 +1,39 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  ArrowIcon,
-  AvailabilityIcon,
-  CableIcon,
-  CertificationIcon,
-  CheckBadgeIcon,
-  EmergencyIcon,
-  LocationIcon,
-  PhoneIcon,
-  PlantationIcon,
-  PruningIcon,
-  ServiceHeartIcon,
-  SnowRopeIcon,
-  SoilIcon,
-  TreeCutIcon,
-  TrimIcon,
-} from "@/components/ModernIcons";
+  TreePine, Scissors, Cable, Flower2, Sprout, Droplets,
+  AlertTriangle, Snowflake, Award, HeartHandshake, Clock,
+  MapPin, Phone, ArrowRight, CheckCircle2, ShieldCheck,
+} from "lucide-react";
 
 const services = [
-  { icon: TreeCutIcon, label: "Abattage", desc: "Abattage sécuritaire d'arbres de toutes tailles", color: "from-green-500/10 to-green-600/5" },
-  { icon: PruningIcon, label: "Élagage", desc: "Taille et entretien de vos arbres", color: "from-emerald-500/10 to-emerald-600/5" },
-  { icon: CableIcon, label: "Haubanage", desc: "Stabilisation des arbres fragilisés", color: "from-teal-500/10 to-teal-600/5" },
-  { icon: TrimIcon, label: "Taille", desc: "Taille d'arbres fruitiers et ornementaux", color: "from-lime-500/10 to-lime-600/5" },
-  { icon: PlantationIcon, label: "Plantation et aménagement arboriculture", desc: "Plantation et aménagement d'espaces verts durables", color: "from-green-500/10 to-green-600/5" },
-  { icon: SoilIcon, label: "Fertilisation", desc: "Fertilisation et soins du sol", color: "from-cyan-500/10 to-cyan-600/5" },
-  { icon: EmergencyIcon, label: "Services d'urgence", desc: "Intervention rapide 24/7", color: "from-amber-500/10 to-amber-600/5" },
-  { icon: SnowRopeIcon, label: "Déneigement sur corde", desc: "Déneigement de toitures en hauteur", color: "from-sky-500/10 to-sky-600/5" },
+  { icon: TreePine, label: "Abattage", desc: "Abattage sécuritaire d'arbres de toutes tailles", color: "from-green-500/10 to-green-600/5" },
+  { icon: Scissors, label: "Élagage", desc: "Taille et entretien de vos arbres", color: "from-emerald-500/10 to-emerald-600/5" },
+  { icon: Cable, label: "Haubanage", desc: "Stabilisation des arbres fragilisés", color: "from-teal-500/10 to-teal-600/5" },
+  { icon: Flower2, label: "Taille", desc: "Taille d'arbres fruitiers et ornementaux", color: "from-lime-500/10 to-lime-600/5" },
+  { icon: Sprout, label: "Plantation et aménagement arboriculture", desc: "Plantation et aménagement d'espaces verts durables", color: "from-green-500/10 to-green-600/5" },
+  { icon: Droplets, label: "Fertilisation", desc: "Fertilisation et soins du sol", color: "from-cyan-500/10 to-cyan-600/5" },
+  { icon: AlertTriangle, label: "Services d'urgence", desc: "Intervention rapide 24/7", color: "from-amber-500/10 to-amber-600/5" },
+  { icon: Snowflake, label: "Déneigement sur corde", desc: "Déneigement de toitures en hauteur", color: "from-sky-500/10 to-sky-600/5" },
 ];
 
 const whyChoose = [
   {
-    icon: CertificationIcon,
+    icon: ShieldCheck,
     title: "Nos certifications",
     desc: "Technicien avec certification en travail sur corde SPRAT et technicien diplômé en élagage et en arboriculture.",
     stat: "SPRAT",
     statLabel: "Certifié",
   },
   {
-    icon: ServiceHeartIcon,
+    icon: HeartHandshake,
     title: "Service client exceptionnel",
     desc: "Nous prenons le temps de comprendre vos besoins et laissons l'endroit plus propre qu'à notre arrivée. Téléphone, texto et courriel disponibles.",
     stat: "5★",
     statLabel: "Satisfaction",
   },
   {
-    icon: AvailabilityIcon,
+    icon: Clock,
     title: "Disponibilité et flexibilité",
     desc: "Ouverts du lundi au dimanche durant 4 saisons. Service d'urgence disponible en tout temps pour les situations critiques.",
     stat: "7j/7",
@@ -95,7 +83,7 @@ const Index = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-bold px-4 py-2 rounded-full mb-8"
           >
-            <CheckBadgeIcon size={12} className="text-accent" />
+            <CheckCircle2 size={12} className="text-accent" />
             Certification SPRAT · Diplômé en arboriculture
           </motion.div>
 
@@ -123,7 +111,7 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.28 }}
             className="text-xl md:text-2xl font-display font-semibold mb-8"
           >
-            <span className="text-accent">à</span>{" "}<span className="text-gradient-amber">Saint-Stanislas-de-Champlain</span>
+            à <span className="text-gradient-amber">Saint-Stanislas-de-Champlain</span>
           </motion.p>
 
           <motion.p
@@ -147,14 +135,14 @@ const Index = () => {
               className="inline-flex items-center gap-2.5 bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary/90 transition-all duration-200 shadow-glow-primary hover:shadow-lg hover:-translate-y-0.5 group"
             >
               Contactez-nous
-              <ArrowIcon size={17} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/contactez-nous#soumission"
               className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
             >
               Parlez-nous de votre projet ici!
-              <ArrowIcon size={17} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -170,7 +158,7 @@ const Index = () => {
       <section className="py-5 bg-accent">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <TreeCutIcon className="text-white/80" size={20} />
+            <TreePine className="text-white/80" size={20} />
             <p className="text-white font-bold text-base">Un arbre à abattre ou élaguer?</p>
           </div>
           <Link
@@ -178,7 +166,7 @@ const Index = () => {
             className="inline-flex items-center gap-2 bg-white text-accent px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors shadow-sm"
           >
             Soumission gratuite
-            <ArrowIcon size={14} />
+            <ArrowRight size={14} />
           </Link>
         </div>
       </section>
@@ -254,7 +242,7 @@ const Index = () => {
                   <h3 className="font-display font-bold text-base mb-2">{s.label}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                   <div className="mt-4 flex items-center gap-1 text-primary text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    En savoir + <ArrowIcon size={11} />
+                    En savoir + <ArrowRight size={11} />
                   </div>
                 </Link>
               </motion.div>
@@ -286,9 +274,9 @@ const Index = () => {
               href="tel:4182551688"
               className="inline-flex items-center gap-2.5 border-2 border-primary text-primary px-8 py-3.5 rounded-xl font-bold hover:bg-primary hover:text-white transition-all duration-200 group"
             >
-              <PhoneIcon size={17} />
+              <Phone size={17} />
               Appelez-nous maintenant
-              <ArrowIcon size={15} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
         </div>
@@ -369,7 +357,7 @@ const Index = () => {
               className="inline-flex items-center gap-2.5 bg-white text-primary px-10 py-4 rounded-xl font-bold text-base hover:bg-white/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
             >
               Demander une soumission
-              <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -407,7 +395,7 @@ const Index = () => {
                 key={z}
                 className="flex items-center gap-2.5 bg-muted/50 rounded-xl px-4 py-3 border border-border/50 text-sm font-medium hover:bg-primary/6 hover:border-primary/20 hover:text-primary transition-all duration-200 group"
               >
-                <LocationIcon size={13} className="text-primary shrink-0" />
+                <MapPin size={13} className="text-primary shrink-0" />
                 <span>{z}</span>
               </div>
             ))}
@@ -436,7 +424,7 @@ const Index = () => {
               className="inline-flex items-center gap-2.5 bg-primary text-white px-10 py-4 rounded-xl font-bold hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-glow-primary hover:-translate-y-0.5 group"
             >
               Contactez-nous
-              <ArrowIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
