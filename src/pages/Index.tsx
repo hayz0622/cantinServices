@@ -123,7 +123,7 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.28 }}
             className="text-xl md:text-2xl font-display font-semibold mb-8"
           >
-            à <span className="text-gradient-amber">Saint-Stanislas-de-Champlain</span>
+            <span className="text-accent">à</span>{" "}<span className="text-gradient-amber">Saint-Stanislas-de-Champlain</span>
           </motion.p>
 
           <motion.p
