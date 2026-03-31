@@ -51,3 +51,9 @@
 - **Boutons** : Bordure brun foncé avec fond transparent, hover effect
 - **Séparateurs** : Ligne olive horizontale au-dessus des titres de section
 
+
+## Procédure Git — vérification des conflits avec `main`
+- Vérifier d'abord que la branche `main` existe localement et/ou sur le remote.
+- Si disponible : exécuter `git fetch` puis `git merge origin/main` (ou `git rebase origin/main`) sur la branche de travail.
+- En cas de conflit : résoudre les fichiers marqués, valider avec tests/lint, puis commit.
+- Terminer par `git push` vers la branche courante.
