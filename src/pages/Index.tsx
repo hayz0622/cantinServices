@@ -78,7 +78,7 @@ const Index = () => {
       <section className="relative min-h-[88vh] flex items-center justify-center text-center overflow-hidden gradient-hero">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 -left-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/4 -right-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(42,95%,47%)" }} />
+          <div className="absolute bottom-1/4 -right-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,85%,50%)" }} />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{

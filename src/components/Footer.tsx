@@ -6,12 +6,12 @@ const Footer = () => {
   return (
     <footer className="relative bg-secondary text-secondary-foreground overflow-hidden">
       {/* Decorative top border gradient */}
-      <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, hsl(80,58%,38%) 0%, hsl(22,100%,44%) 50%, hsl(80,58%,38%) 100%)" }} />
+      <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, hsl(80,58%,38%) 0%, hsl(35,85%,50%) 50%, hsl(80,58%,38%) 100%)" }} />
 
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-5" style={{ background: "radial-gradient(circle, hsl(80,58%,38%) 0%, transparent 70%)" }} />
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-5" style={{ background: "radial-gradient(circle, hsl(22,100%,44%) 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-5" style={{ background: "radial-gradient(circle, hsl(35,85%,50%) 0%, transparent 70%)" }} />
       </div>
 
       <div className="container relative py-14">
@@ -127,7 +127,7 @@ const Footer = () => {
         <div className="border-t border-secondary-foreground/10 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <div className="flex items-center gap-2 text-xs text-secondary-foreground/40">
             <TreePine size={13} />
-            <p>© 2026 Tous droits réservés | Cantin Services D'arbres — créé par Ubiweb</p>
+            <p>© 2026 Tous droits réservés | Cantin Services D'arbres</p>
           </div>
           <Link
             to="/politique-de-confidentialite"
