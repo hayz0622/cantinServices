@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -81,7 +82,7 @@ export default {
       },
       boxShadow: {
         'glow-primary': '0 0 30px -5px hsl(80, 58%, 38% / 0.35)',
-        'glow-accent': '0 0 30px -5px hsl(22, 100%, 44% / 0.40)',
+        'glow-accent': '0 0 30px -5px hsl(35, 85%, 50% / 0.35)',
         'card': '0 4px 20px -4px rgba(0,0,0,0.08)',
         'card-hover': '0 20px 40px -12px rgba(0,0,0,0.15)',
       },
@@ -111,5 +112,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
