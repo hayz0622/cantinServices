@@ -127,7 +127,7 @@ const Footer = () => {
         <div className="border-t border-secondary-foreground/10 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <div className="flex items-center gap-2 text-xs text-secondary-foreground/40">
             <TreePine size={13} />
-            <p>© 2026 Tous droits réservés | Cantin Services D'arbres — créé par Ubiweb</p>
+            <p>© 2026 Tous droits réservés | Cantin Services D'arbres</p>
           </div>
           <Link
             to="/politique-de-confidentialite"
