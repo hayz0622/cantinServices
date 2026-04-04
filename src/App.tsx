@@ -13,6 +13,7 @@ import ContactezNous from "./pages/ContactezNous";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import NotFound from "./pages/NotFound";
 
+/** Scrolls to top on route change, or to a #hash section if present. */
 const ScrollToTopOrHash = () => {
   const { pathname, hash } = useLocation();
 
