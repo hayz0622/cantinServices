@@ -24,27 +24,27 @@ import { fadeUpGallery as fadeUp } from "@/lib/motionVariants";
 const heroBg = avantApres;
 
 const images = [
-  { src: abattage1, alt: "Abattage 1", imagePositionMobile: "center 46%", imagePositionDesktop: "center 34%" },
-  { src: abattage2, alt: "Abattage 2", imagePositionMobile: "center 42%", imagePositionDesktop: "center 30%" },
-  { src: abattage3, alt: "Abattage 3", imagePositionMobile: "center 38%", imagePositionDesktop: "center 28%" },
-  { src: abattage4, alt: "Abattage 4", imagePositionMobile: "center 40%", imagePositionDesktop: "center 30%" },
-  { src: avantApres, alt: "Avant / Après", imagePositionMobile: "center 46%", imagePositionDesktop: "center 32%" },
-  { src: elagage, alt: "Élagage", imagePositionMobile: "center 34%", imagePositionDesktop: "center 24%" },
-  { src: outils, alt: "Outils", imagePositionMobile: "center 42%", imagePositionDesktop: "center 30%" },
-  { src: haubanage, alt: "Haubanage", imagePositionMobile: "center 40%", imagePositionDesktop: "center 28%" },
-  { src: lumiere1, alt: "Lumière 1", imagePositionMobile: "center 48%", imagePositionDesktop: "center 34%" },
-  { src: lumiere2, alt: "Lumière 2", imagePositionMobile: "center 46%", imagePositionDesktop: "center 34%" },
-  { src: rabaissage, alt: "Rabaissage", imagePositionMobile: "center 40%", imagePositionDesktop: "center 30%" },
-  { src: tailleHaie, alt: "Taille de haie", imagePositionMobile: "center 36%", imagePositionDesktop: "center 26%" },
-  { src: urgenceEte, alt: "Urgence été", imagePositionMobile: "center 38%", imagePositionDesktop: "center 30%" },
-  { src: urgenceHiver, alt: "Urgence hiver", imagePositionMobile: "center 34%", imagePositionDesktop: "center 26%" },
+  { src: abattage1, alt: "Abattage 1", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
+  { src: abattage2, alt: "Abattage 2", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: abattage3, alt: "Abattage 3", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
+  { src: abattage4, alt: "Abattage 4", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: avantApres, alt: "Avant / Après", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
+  { src: elagage, alt: "Élagage", imagePositionMobile: "center 42%", imagePositionDesktop: "center 38%" },
+  { src: outils, alt: "Outils", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: haubanage, alt: "Haubanage", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: lumiere1, alt: "Lumière 1", imagePositionMobile: "center 52%", imagePositionDesktop: "center 46%" },
+  { src: lumiere2, alt: "Lumière 2", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
+  { src: rabaissage, alt: "Rabaissage", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: tailleHaie, alt: "Taille de haie", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
+  { src: urgenceEte, alt: "Urgence été", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: urgenceHiver, alt: "Urgence hiver", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
 ];
 
 const Realisations = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg} imagePositionMobile="center 40%" imagePositionDesktop="center 30%">
+      <PageHero image={heroBg} imagePositionMobile="center 50%" imagePositionDesktop="center 45%">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           <Camera size={12} />
           Portfolio

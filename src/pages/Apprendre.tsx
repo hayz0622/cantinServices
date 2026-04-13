@@ -21,8 +21,8 @@ const sections = [
     title: "Abattage",
     badge: "Service principal",
     image: imgAbattage,
-    imagePositionMobile: "center 46%",
-    imagePositionDesktop: "center 34%",
+    imagePositionMobile: "center 50%",
+    imagePositionDesktop: "center 45%",
     desc: "L'abattage d'arbres est une opération délicate qui nécessite une expertise professionnelle. Nos arboristes diplômés évaluent chaque situation pour choisir la méthode la plus sécuritaire. Rappelons que l'arbre crée de l'ombre, bloque les bourrasques de vent, crée de l'intimité, et peut prendre bien plus que le cours d'une vie pour se développer à maturité — nous traitons chaque abattage avec soin.",
     items: ["Démontage d'arbre en grimpe", "Abattage par le pied", "Déboisement résidentiel (construction)", "Déboisement pour chemin privé", "Nettoyage pour érablière"],
     subSections: [
@@ -43,8 +43,8 @@ const sections = [
     title: "Élagage",
     badge: "Entretien régulier",
     image: imgElagage,
-    imagePositionMobile: "center 34%",
-    imagePositionDesktop: "center 24%",
+    imagePositionMobile: "center 42%",
+    imagePositionDesktop: "center 38%",
     desc: "L'élagage consiste à retirer les branches mortes, malades ou dangereuses pour maintenir la santé et l'esthétique de vos arbres. Un élagage régulier prévient les risques de chutes de branches et prolonge la vie de l'arbre.",
     items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Taille de réduction", "Descente contrôlée sur corde"],
     accent: "primary",
@@ -54,8 +54,8 @@ const sections = [
     title: "Haubanage",
     badge: "Sécurité & prévention",
     image: imgHaubanage,
-    imagePositionMobile: "center 40%",
-    imagePositionDesktop: "center 28%",
+    imagePositionMobile: "center 48%",
+    imagePositionDesktop: "center 42%",
     desc: "Le haubanage permet de sauvegarder des arbres matures en réduisant le stress mécanique causé par les vents violents et le verglas. C'est souvent une solution plus économique que l'abattage complet, tout en préservant la valeur esthétique et l'ombre de votre propriété.",
     items: ["Installation de câbles dynamiques", "Haubanage de sécurité structurale", "Évaluation des risques", "Suivi et ajustement annuel"],
     subSections: [
@@ -78,8 +78,8 @@ const sections = [
     title: "Taille",
     badge: "Ornemental & fruitier",
     image: imgTaille,
-    imagePositionMobile: "center 40%",
-    imagePositionDesktop: "center 30%",
+    imagePositionMobile: "center 48%",
+    imagePositionDesktop: "center 42%",
     desc: "La taille de haies et d'arbustes ornementaux favorise une croissance saine et une esthétique impeccable.",
     items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
     subSections: [
@@ -105,8 +105,8 @@ const sections = [
     title: "Plantation et aménagement arboricole",
     badge: "Aménagement",
     image: imgPlantation,
-    imagePositionMobile: "center 48%",
-    imagePositionDesktop: "center 36%",
+    imagePositionMobile: "center 55%",
+    imagePositionDesktop: "center 48%",
     desc: "Nous vous aidons à choisir les bonnes espèces d'arbres et d'arbustes adaptées à votre terrain, au climat et à vos objectifs paysagers. Plantations réalisées dans les règles de l'art.",
     items: ["Sélection parmi nos pépinières partenaires", "Préparation et amendement du sol", "Plantation professionnelle", "Aménagement horticole", "Conseils d'entretien post-plantation"],
     accent: "primary",
@@ -116,8 +116,8 @@ const sections = [
     title: "Fertilisation",
     badge: "Santé du sol",
     image: imgFertilisation,
-    imagePositionMobile: "center 36%",
-    imagePositionDesktop: "center 28%",
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 40%",
     desc: "La fertilisation adaptée renforce la vitalité de vos arbres et améliore la qualité de votre sol. Nos experts analysent votre terrain pour recommander le traitement idéal au moment optimal.",
     items: ["Analyse des carences du sol", "Fertilisation profonde", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies", "Programme d'entretien annuel"],
     accent: "primary",
@@ -127,8 +127,8 @@ const sections = [
     title: "Services d'urgence",
     badge: "Disponible 24/7",
     image: imgUrgence,
-    imagePositionMobile: "center 36%",
-    imagePositionDesktop: "center 30%",
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 42%",
     desc: "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
     items: ["Intervention 24h/7j", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête ou verglas"],
     accent: "accent",
@@ -138,8 +138,8 @@ const sections = [
     title: "Déneigement sur corde",
     badge: "Service hivernal",
     image: imgDeneigement,
-    imagePositionMobile: "center 34%",
-    imagePositionDesktop: "center 26%",
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 40%",
     desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
     items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace et de surcharges", "Prévention des affaissements de toiture"],
     accent: "accent",
@@ -161,7 +161,7 @@ const Apprendre = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg} imagePositionMobile="center 42%" imagePositionDesktop="center 28%">
+      <PageHero image={heroBg} imagePositionMobile="center 52%" imagePositionDesktop="center 45%">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           Guide complet
         </div>

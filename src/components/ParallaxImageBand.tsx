@@ -114,7 +114,7 @@ export function ParallaxImageBand({
       ref={ref}
       role="presentation"
       data-parallax-velocity="0.2"
-      className={`w-full shrink-0 overflow-hidden bg-muted h-36 sm:h-44 md:h-52 lg:h-56 ${className}`}
+      className={`w-full shrink-0 overflow-hidden bg-muted h-56 sm:h-72 md:h-80 lg:h-96 ${className}`}
       style={{
         backgroundImage: `url(${src})`,
         backgroundSize: "cover",

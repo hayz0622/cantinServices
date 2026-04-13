@@ -36,7 +36,7 @@ export function PageHero({
   } as CSSProperties;
 
   return (
-    <section className={cn("relative py-24 text-center overflow-hidden bg-neutral-950", className)}>
+    <section className={cn("relative py-32 md:py-40 text-center overflow-hidden bg-neutral-950", className)}>
       <div className="absolute inset-0" aria-hidden>
         <div
           className="responsive-focal-bg absolute inset-0 bg-cover bg-no-repeat"

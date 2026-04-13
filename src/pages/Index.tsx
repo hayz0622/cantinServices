@@ -17,9 +17,9 @@ import { SERVICE_ZONES } from "@/content/zones";
 import { fadeUp } from "@/lib/motionVariants";
 
 const HERO_BG_IMAGES = [
-  { src: heroBg1, mobile: "center 44%", desktop: "center 30%" },
-  { src: heroBg2, mobile: "center 40%", desktop: "center 28%" },
-  { src: heroBg3, mobile: "center 38%", desktop: "center 24%" },
+  { src: heroBg1, mobile: "center 50%", desktop: "center 45%" },
+  { src: heroBg2, mobile: "center 50%", desktop: "center 42%" },
+  { src: heroBg3, mobile: "center 48%", desktop: "center 40%" },
 ] as const;
 const HERO_BG_INTERVAL_MS = 6500;
 
@@ -224,7 +224,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={heroBg2} focalYMobile="48%" focalYDesktop="35%" />
+      <ParallaxImageBand src={heroBg2} focalYMobile="50%" focalYDesktop="45%" />
 
       {/* ── Services grid ────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
@@ -306,7 +306,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={parralaxTreeCare} focalYMobile="54%" focalYDesktop="40%" />
+      <ParallaxImageBand src={parralaxTreeCare} focalYMobile="58%" focalYDesktop="52%" />
 
       {/* ── Why choose us ────────────────────────────────────────── */}
       <section className="py-20 gradient-dark text-white relative overflow-hidden">
@@ -429,7 +429,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={parralaxRealisations} focalYMobile="46%" focalYDesktop="33%" />
+      <ParallaxImageBand src={parralaxRealisations} focalYMobile="50%" focalYDesktop="42%" />
 
       {/* ── Final CTA ────────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
