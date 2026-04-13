@@ -429,7 +429,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={parralaxRealisations} focalYMobile="50%" focalYDesktop="42%" />
+      <ParallaxImageBand src={parralaxRealisations} focalYMobile="75%" focalYDesktop="70%" />
 
       {/* ── Final CTA ────────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">

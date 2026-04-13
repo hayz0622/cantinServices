@@ -11,9 +11,8 @@ import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import heroBg from "@/assets/hero-soumission.jpg";
+import logo from "@/assets/logo.png";
 
-import { PageHero } from "@/components/PageHero";
 import { SERVICE_ZONES } from "@/content/zones";
 import {
   NEED_SELECT_ORDER,
@@ -278,18 +277,45 @@ const ContactezNous = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg} imagePositionMobile="center 48%" imagePositionDesktop="center 42%">
-        <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-          <MessageSquare size={12} />
-          Prenons contact
+      <section className="relative py-32 md:py-40 text-center overflow-hidden gradient-dark">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={logo}
+              alt="Cantin Services d'Arbres"
+              className="mx-auto mb-8 h-24 md:h-32 w-auto drop-shadow-lg"
+            />
+            <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
+              <MessageSquare size={12} />
+              Prenons contact
+            </div>
+            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
+              <span className="text-gradient-amber">Contactez</span>-nous
+            </h1>
+            <p className="text-white/60 max-w-xl mx-auto text-lg">
+              Nous sommes disponibles pour répondre à toutes vos questions et planifier une intervention.
+            </p>
+          </motion.div>
         </div>
-        <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-          <span className="text-gradient-amber">Contactez</span>-nous
-        </h1>
-        <p className="text-white/60 max-w-xl mx-auto text-lg">
-          Nous sommes disponibles pour répondre à toutes vos questions et planifier une intervention.
-        </p>
-      </PageHero>
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 50" fill="none" className="w-full" aria-hidden>
+            <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
+          </svg>
+        </div>
+      </section>
 
       {/* ── Contact cards row ─────────────────────────────────── */}
       <section className="py-14">
