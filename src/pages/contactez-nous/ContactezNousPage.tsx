@@ -23,7 +23,7 @@ import {
 } from "@/content/serviceNeeds";
 import { fadeUp } from "@/lib/motionVariants";
 
-import { contactItems, faqs } from "./constants";
+import { faqs } from "./constants";
 import {
   EmailJsNotConfiguredError,
   isEmailJsConfigured,
@@ -314,46 +314,6 @@ const ContactezNous = () => {
           <svg viewBox="0 0 1440 50" fill="none" className="w-full" aria-hidden>
             <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
           </svg>
-        </div>
-      </section>
-
-      {/* ── Contact cards row ─────────────────────────────────── */}
-      <section className="py-14">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {contactItems.map((item, i) => {
-              const Inner = (
-                <motion.div
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeUp}
-                  className={`flex flex-col gap-3 rounded-2xl p-5 border h-full transition-all duration-200 group ${
-                    item.accent
-                      ? "bg-accent/8 border-accent/20"
-                      : "bg-primary/5 border-primary/12"
-                  } ${item.href ? "hover:-translate-y-1 hover:shadow-card cursor-pointer" : ""}`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200 ${
-                    item.accent ? "bg-accent/15 group-hover:bg-accent/25" : "bg-primary/10 group-hover:bg-primary/20"
-                  }`}>
-                    <item.icon size={18} className={item.accent ? "text-accent" : "text-primary"} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</p>
-                    <p className={`font-bold text-sm break-all ${item.href ? "group-hover:text-primary transition-colors" : ""}`}>{item.value}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
-                  </div>
-                </motion.div>
-              );
-              return item.href ? (
-                <a key={item.label} href={item.href}>{Inner}</a>
-              ) : (
-                <div key={item.label}>{Inner}</div>
-              );
-            })}
-          </div>
         </div>
       </section>
 

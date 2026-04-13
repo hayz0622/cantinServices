@@ -11,7 +11,6 @@ import heroBg1 from "@/assets/hero-bg-1.png";
 import heroBg2 from "@/assets/hero-bg-2.png";
 import heroBg3 from "@/assets/hero-bg-3.png";
 import parralaxTreeCare from "@/assets/parallax-treecare.jpg";
-import parralaxRealisations from "@/assets/realisations-relevage-halle.jpg";
 import { ParallaxImageBand } from "@/components/ParallaxImageBand";
 import { SERVICE_ZONES } from "@/content/zones";
 import { fadeUp } from "@/lib/motionVariants";
@@ -428,8 +427,6 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
-
-      <ParallaxImageBand src={parralaxRealisations} focalYMobile="75%" focalYDesktop="70%" />
 
       {/* ── Final CTA ────────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
