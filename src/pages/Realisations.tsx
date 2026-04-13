@@ -2,72 +2,66 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ImageIcon, ArrowRight, Camera } from "lucide-react";
 
-const images = [
-  { src: "", alt: "Abattage 1" },
-  { src: "", alt: "Abattage 2" },
-  { src: "", alt: "Abattage 3" },
-  { src: "", alt: "Abattage 4" },
-  { src: "", alt: "Avant / Après" },
-  { src: "", alt: "Élagage" },
-  { src: "", alt: "Outils" },
-  { src: "", alt: "Haubanage" },
-  { src: "", alt: "Lumière 1" },
-  { src: "", alt: "Lumière 2" },
-  { src: "", alt: "Rabaissage" },
-  { src: "", alt: "Taille de haie" },
-  { src: "", alt: "Urgence été" },
-  { src: "", alt: "Urgence hiver" },
-];
+import abattage1 from "@/assets/Apprendre - abattage 1.jpg";
+import abattage2 from "@/assets/galerie-abattage-2.jpg";
+import abattage3 from "@/assets/galerie-abattage-3.jpg";
+import abattage4 from "@/assets/galerie-abattage2.jpg";
+import avantApres from "@/assets/galerie-avant-apres.png";
+import elagage from "@/assets/Réalisation - élagage 2 .jpg";
+import outils from "@/assets/galerie-hache.jpg";
+import haubanage from "@/assets/galerie-haubanage.jpg";
+import lumiere1 from "@/assets/galerie-lumiere1.jpg";
+import lumiere2 from "@/assets/galerie-lumiere2.jpg";
+import rabaissage from "@/assets/galerie-rabaissage.jpg";
+import tailleHaie from "@/assets/Réalisation -  taille de haie 1.jpg";
+import urgenceEte from "@/assets/galerie-urgence-ete.jpg";
+import urgenceHiver from "@/assets/galerie-urgence-hiver.jpg";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, delay: i * 0.06, ease: "easeOut" },
-  }),
-};
+import { PageHero } from "@/components/PageHero";
+import { fadeUpGallery as fadeUp } from "@/lib/motionVariants";
+
+const heroBg = avantApres;
+
+const images = [
+  { src: abattage1, alt: "Abattage 1" },
+  { src: abattage2, alt: "Abattage 2" },
+  { src: abattage3, alt: "Abattage 3" },
+  { src: abattage4, alt: "Abattage 4" },
+  { src: avantApres, alt: "Avant / Après" },
+  { src: elagage, alt: "Élagage" },
+  { src: outils, alt: "Outils" },
+  { src: haubanage, alt: "Haubanage" },
+  { src: lumiere1, alt: "Lumière 1" },
+  { src: lumiere2, alt: "Lumière 2" },
+  { src: rabaissage, alt: "Rabaissage" },
+  { src: tailleHaie, alt: "Taille de haie" },
+  { src: urgenceEte, alt: "Urgence été" },
+  { src: urgenceHiver, alt: "Urgence hiver" },
+];
 
 const Realisations = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative gradient-hero py-24 text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,90%,52%)" }} />
+      <PageHero image={heroBg}>
+        <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
+          <Camera size={12} />
+          Portfolio
         </div>
-        <div className="container relative">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-              <Camera size={12} />
-              Portfolio
-            </div>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              Galerie
-            </h1>
-            <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
-              Un aperçu de ce qu'on peut accomplir pour vous.
-            </p>
-            <Link
-              to="/contactez-nous"
-              className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
-            >
-              Contactez-nous
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 50" fill="none" className="w-full">
-            <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+        <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
+          Galerie
+        </h1>
+        <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
+          Un aperçu de ce qu'on peut accomplir pour vous.
+        </p>
+        <Link
+          to="/contactez-nous"
+          className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
+        >
+          Contactez-nous
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </PageHero>
 
       {/* ── Intro ─────────────────────────────────────────────── */}
       <section className="py-16">

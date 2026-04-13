@@ -1,0 +1,21 @@
+/** Régions et villes desservies (affichées sur l'accueil et la page contact). */
+export const SERVICE_ZONES = [
+  "Mauricie",
+  "Mékinac",
+  "Saint-Tite",
+  "Shawinigan",
+  "Saint-Marc-des-Carrières",
+  "Saint-Ubalde",
+  "Rivière-à-Pierre",
+  "Lac-aux-Sables",
+  "Saint-Maurice",
+  "Trois-Rivières",
+  "Sainte-Catherine",
+  "Lac Sept Îles",
+  "Lac-Saint-Joseph",
+  "Portneuf",
+  "Saint-Raymond",
+  "Pont-Rouge",
+  "Québec",
+  "Et davantage…",
+] as const;

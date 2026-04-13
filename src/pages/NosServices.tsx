@@ -2,10 +2,29 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { TreePine, Scissors, Cable, Flower2, Sprout, Droplets, AlertTriangle, Snowflake, ArrowRight } from "lucide-react";
 
+import imgAbattage from "@/assets/hero-bg-1.png";
+import imgElagage from "@/assets/galerie-elagage-3.jpg";
+import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
+import imgTaille from "@/assets/galerie-taille-haie.jpg";
+import imgPlantation from "@/assets/parallax-treecare.jpg";
+import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
+import imgUrgence from "@/assets/galerie-urgence-hiver.jpg";
+import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
+import apprendreElagace from "@/assets/apprendre_elagage_1.jpg";
+import apprendrePlantation from "@/assets/apprendre_plantation_1.avif";
+import parralaxTreeCare from "@/assets/parallax-treecare.jpg";
+import heroBg from "@/assets/Realisations - pin forestier 1.jpg";
+
+import { ImgHTMLAttributes } from "react";
+
+import { PageHero } from "@/components/PageHero";
+import { fadeUp } from "@/lib/motionVariants";
+
 const services = [
   {
     icon: TreePine,
     label: "Abattage",
+    image: imgAbattage,
     intro: "Arbres dangereux ou encombrants",
     desc: "Nos professionnels utilisent des techniques de démontage sécuritaire adaptées à chaque situation. Chaque cas est évalué avec soin pour choisir la méthode la plus appropriée — abattage par le pied ou démontage en espace restreint.",
     items: ["Abattage conventionnel par le pied", "Démontage en espace restreint", "Essouchage", "Nettoyage complet du site"],
@@ -15,6 +34,7 @@ const services = [
   {
     icon: Scissors,
     label: "Élagage",
+    image: apprendreElagace,
     intro: "Assurez la vitalité et la structure optimale de vos arbres",
     desc: "Relevage, élagage esthétique pour retirer les branches mortes et malades, et interventions nécessaires lorsqu'une branche nuit aux fils électriques, à votre maison ou à votre stationnement. Descente contrôlée sur corde disponible.",
     items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Descente contrôlée sur corde"],
@@ -24,6 +44,7 @@ const services = [
   {
     icon: Cable,
     label: "Haubanage",
+    image: imgHaubanage,
     intro: "Soyons préventifs — conservez la beauté de votre arbre",
     desc: "Lorsque des branches charpentières présentent des signes de faiblesse structurale, un câble d'acier permet de limiter les risques de chute — idéal pour les arbres en bord de sentier piéton, surplombant un stationnement ou des bâtiments.",
     items: ["Câble d'acier pour branches charpentières", "Arbres en bord de sentier piéton", "Arbres surplombant stationnements", "Évaluation des risques structuraux"],
@@ -33,6 +54,7 @@ const services = [
   {
     icon: Flower2,
     label: "Taille",
+    image: parralaxTreeCare,
     intro: "Conservez la densité et l'apparence de vos arbres",
     desc: "Haies de conifères ou feuillus, taille de formation et taille d'arbres fruitiers pour une croissance optimale. Une haie non entretenue peut gagner jusqu'à 24 pouces par an — une taille annuelle limite cette expansion à 2 à 4 pouces.",
     items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
@@ -42,6 +64,7 @@ const services = [
   {
     icon: Sprout,
     label: "Plantation et aménagement arboricole",
+    image: apprendrePlantation,
     intro: "Créez des espaces verts durables",
     desc: "Plantations réalisées dans les règles de l'art. Choisissez vos arbres parmi nos pépinières partenaires. Aménagement horticole et conseils pour assurer le futur de vos arbres.",
     items: ["Sélection parmi pépinières partenaires", "Plantation professionnelle", "Aménagement horticole", "Conseils post-plantation"],
@@ -51,6 +74,7 @@ const services = [
   {
     icon: Droplets,
     label: "Fertilisation",
+    image: imgFertilisation,
     intro: "Revitalisez vos arbres et stimulez leur croissance",
     desc: "Apports nutritifs adaptés aux besoins réels de vos arbres : analyse des carences, fertilisants appropriés au moment optimal. Traitement contre les maladies, fertilisation granulaire et par injections disponibles.",
     items: ["Analyse des carences du sol", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies"],
@@ -60,6 +84,7 @@ const services = [
   {
     icon: AlertTriangle,
     label: "Services d'urgence",
+    image: imgUrgence,
     intro: "Reprenez rapidement le contrôle des situations critiques",
     desc: "Tempête, bris de branche menaçant votre maison, arbre tombé bloquant votre accès — nous intervenons sans délai pour sécuriser votre propriété. Disponible 24h/24, 7j/7.",
     items: ["Intervention 24/7", "Dégagement après tempête", "Stabilisation d'arbres dangereux", "Sécurisation de la propriété"],
@@ -69,6 +94,7 @@ const services = [
   {
     icon: Snowflake,
     label: "Déneigement sur corde",
+    image: imgDeneigement,
     intro: "Libérez vos toitures des accumulations dangereuses",
     desc: "Techniques d'accès sur corde spécialisées pour les zones difficiles d'accès, sans endommager votre propriété ni compromettre notre sécurité. Évite les surcharges pouvant causer des affaissements.",
     items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace", "Prévention des surcharges"],
@@ -77,54 +103,28 @@ const services = [
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
-  }),
-};
-
 const NosServices = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative gradient-hero py-24 text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,85%,50%)" }} />
+      <PageHero image={heroBg}>
+        <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
+          Solutions complètes
         </div>
-        <div className="container relative">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-              Solutions complètes
-            </div>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              Nos <span className="text-gradient-amber">Services</span>
-            </h1>
-            <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
-              Des solutions complètes adaptées à vos besoins et à ceux de vos arbres.
-            </p>
-            <Link
-              to="/contactez-nous#soumission"
-              className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
-            >
-              Soumission gratuite ici!
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 50" fill="none" className="w-full">
-            <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+        <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
+          Nos <span className="text-gradient-amber">Services</span>
+        </h1>
+        <p className="text-white/60 max-w-xl mx-auto mb-10 text-lg">
+          Des solutions complètes adaptées à vos besoins et à ceux de vos arbres.
+        </p>
+        <Link
+          to="/contactez-nous#soumission"
+          className="inline-flex items-center gap-2.5 bg-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-accent/90 transition-all duration-200 shadow-glow-accent hover:-translate-y-0.5 group"
+        >
+          Soumission gratuite ici!
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </PageHero>
 
       {/* ── Intro ─────────────────────────────────────────────── */}
       <section className="py-20">
@@ -162,48 +162,82 @@ const NosServices = () => {
             {services.map((s, i) => (
               <motion.div
                 key={s.label}
+                className="h-full"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
                 custom={i % 4}
                 variants={fadeUp}
               >
-                <div className="group flex flex-col bg-white rounded-2xl p-7 border border-border/60 shadow-card card-hover h-full">
-                  <div className="flex items-start gap-5 mb-5">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shrink-0 border border-primary/10 group-hover:scale-105 transition-transform duration-300`}>
-                      <s.icon className="text-primary" size={26} />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-bold text-lg leading-tight">{s.label}</h3>
-                      <p className="text-sm text-accent font-semibold mt-0.5">{s.intro}</p>
-                    </div>
+                <div
+                  className="group relative h-[300px] w-full overflow-hidden rounded-2xl border border-border/60 shadow-card outline-none transition-shadow duration-300 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-dark"
+                  tabIndex={0}
+                >
+                  <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out group-hover:scale-105 group-focus-within:scale-105">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out"
+                      style={{ backgroundImage: `url(${s.image})` }}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/50 group-focus-within:bg-black/50" />
                   </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">{s.desc}</p>
+                  <div className="relative z-10 flex h-full flex-col text-white">
+                    <div className="pointer-events-none invisible absolute inset-0 flex flex-col p-4 pb-5 opacity-0 transition-[opacity,visibility] duration-300 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
+                      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+                        <div className="flex items-start gap-3">
+                          <div
+                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/15 backdrop-blur-sm`}
+                          >
+                            <s.icon className="text-white" size={22} />
+                          </div>
+                          <div className="min-w-0">
+                            <h3 className="font-display text-base font-bold leading-tight drop-shadow-sm">{s.label}</h3>
+                            <p className="mt-1 text-xs font-semibold text-accent drop-shadow-sm">{s.intro}</p>
+                          </div>
+                        </div>
+                        <div className="mb-3 mt-3 h-px w-1/2 max-w-[12rem] bg-white/40" />
+                        <p className="text-xs leading-relaxed text-white/90 drop-shadow-sm">{s.desc}</p>
+                        <ul className="mt-3 space-y-1.5">
+                          {s.items.map((item) => (
+                            <li key={item} className="flex items-center gap-2 text-xs font-medium text-white/95">
+                              <span className="h-1 w-1 shrink-0 rounded-full bg-accent" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <Link
+                            to={`/apprendre#${s.hash}`}
+                            className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-primary min-[400px]:flex-none"
+                          >
+                            En savoir +
+                            <ArrowRight size={11} />
+                          </Link>
+                          <Link
+                            to="/contactez-nous#soumission"
+                            className="flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/90 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-accent"
+                          >
+                            Ici!
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
 
-                  <ul className="space-y-2 mb-6">
-                    {s.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2.5 text-sm font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex gap-3 mt-auto">
-                    <Link
-                      to={`/apprendre#${s.hash}`}
-                      className="flex-1 flex items-center justify-center gap-1.5 text-primary text-xs font-bold border border-primary/20 rounded-lg px-3 py-2.5 hover:bg-primary hover:text-white transition-all duration-200 group/btn"
-                    >
-                      En savoir +
-                      <ArrowRight size={11} className="group-hover/btn:translate-x-0.5 transition-transform" />
-                    </Link>
-                    <Link
-                      to="/contactez-nous#soumission"
-                      className="flex items-center gap-1.5 text-xs font-bold bg-accent/10 text-accent border border-accent/20 rounded-lg px-3 py-2.5 hover:bg-accent hover:text-white transition-all duration-200"
-                    >
-                      Ici!
-                    </Link>
+                    <div className="pointer-events-none mt-auto p-4 pb-5 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
+                      <div className="mb-3 h-px w-[45%] max-w-[11rem] bg-white/70" />
+                      <div className="flex items-end gap-3">
+                        <div
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white/15 backdrop-blur-sm`}
+                        >
+                          <s.icon className="text-white" size={24} />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-display text-base font-bold leading-tight drop-shadow-md">{s.label}</h3>
+                          <p className="mt-0.5 text-xs font-semibold text-accent drop-shadow-md">{s.intro}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>

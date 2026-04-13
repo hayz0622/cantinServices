@@ -1,0 +1,115 @@
+import { useEffect, useRef } from "react";
+
+type ParallaxImageBandProps = {
+  src: string;
+  className?: string;
+};
+
+
+export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let rafId = 0;
+
+    const apply = () => {
+      if (mq.matches) {
+        el.style.backgroundPosition = "50% calc(50% - 68px)";
+        return;
+      }
+      const raw = el.getAttribute("data-parallax-velocity");
+      const v = raw != null ? parseFloat(raw) : 0.2;
+      const rect = el.getBoundingClientRect();
+      const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
+      const shift = centerOffset * (Number.isFinite(v) ? v : 0.2);
+      el.style.backgroundPosition = `50% calc(50% - 68px + ${shift}px)`;
+    };
+
+    const loop = () => {
+      apply();
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const stopLoop = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
+
+    const startLoop = () => {
+      if (mq.matches || rafId) return;
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const marginPx = 120;
+    const isNearViewport = () => {
+      const rect = el.getBoundingClientRect();
+      return rect.bottom > -marginPx && rect.top < window.innerHeight + marginPx;
+    };
+
+    const onMqChange = () => {
+      if (mq.matches) {
+        stopLoop();
+        apply();
+      } else if (isNearViewport()) {
+        startLoop();
+      } else {
+        apply();
+      }
+    };
+
+    const onResize = () => {
+      apply();
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (mq.matches) {
+          stopLoop();
+          apply();
+          return;
+        }
+        if (entry?.isIntersecting) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { root: null, rootMargin: `${marginPx}px 0px`, threshold: 0 },
+    );
+
+    io.observe(el);
+    apply();
+
+    window.addEventListener("resize", onResize, { passive: true });
+    mq.addEventListener("change", onMqChange);
+
+    return () => {
+      stopLoop();
+      io.disconnect();
+      window.removeEventListener("resize", onResize);
+      mq.removeEventListener("change", onMqChange);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      role="presentation"
+      data-parallax-velocity="0.2"
+      className={`w-full shrink-0 overflow-hidden bg-muted h-36 sm:h-44 md:h-52 lg:h-56 ${className}`}
+      style={{
+        backgroundImage: `url(${src})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "50% calc(50% - 68px)",
+      }}
+    />
+  );
+}

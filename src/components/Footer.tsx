@@ -28,7 +28,7 @@ const Footer = () => {
             </p>
             <p className="text-xs text-secondary-foreground/40 font-mono">NEQ : 1181530917</p>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/people/Cantin-Services-Darbres/61581990436259/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-semibold text-secondary-foreground/70 hover:text-accent transition-colors group"

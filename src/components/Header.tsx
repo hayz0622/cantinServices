@@ -55,7 +55,7 @@ const Header = () => {
       <div className="bg-secondary text-secondary-foreground">
         <div className="container flex justify-end items-center gap-5 py-2 text-sm">
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/people/Cantin-Services-Darbres/61581990436259/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent transition-colors flex items-center gap-1.5 text-xs font-medium"
