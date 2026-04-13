@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { TreePine, Scissors, Cable, Flower2, Sprout, Droplets, AlertTriangle, Snowflake, ArrowRight } from "lucide-react";
+import type { CSSProperties } from "react";
 
 import imgAbattage from "@/assets/hero-bg-1.png";
-import imgElagage from "@/assets/galerie-elagage-3.jpg";
 import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
-import imgTaille from "@/assets/galerie-taille-haie.jpg";
-import imgPlantation from "@/assets/parallax-treecare.jpg";
 import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
 import imgUrgence from "@/assets/galerie-urgence-hiver.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
@@ -15,16 +13,29 @@ import apprendrePlantation from "@/assets/apprendre_plantation_1.avif";
 import parralaxTreeCare from "@/assets/parallax-treecare.jpg";
 import heroBg from "@/assets/Realisations - pin forestier 1.jpg";
 
-import { ImgHTMLAttributes } from "react";
-
 import { PageHero } from "@/components/PageHero";
 import { fadeUp } from "@/lib/motionVariants";
 
-const services = [
+type Service = {
+  icon: typeof TreePine;
+  label: string;
+  image: string;
+  imagePositionMobile: string;
+  imagePositionDesktop: string;
+  intro: string;
+  desc: string;
+  items: string[];
+  hash: string;
+  gradient: string;
+};
+
+const services: Service[] = [
   {
     icon: TreePine,
     label: "Abattage",
     image: imgAbattage,
+    imagePositionMobile: "center 42%",
+    imagePositionDesktop: "center 34%",
     intro: "Arbres dangereux ou encombrants",
     desc: "Nos professionnels utilisent des techniques de démontage sécuritaire adaptées à chaque situation. Chaque cas est évalué avec soin pour choisir la méthode la plus appropriée — abattage par le pied ou démontage en espace restreint.",
     items: ["Abattage conventionnel par le pied", "Démontage en espace restreint", "Essouchage", "Nettoyage complet du site"],
@@ -35,6 +46,8 @@ const services = [
     icon: Scissors,
     label: "Élagage",
     image: apprendreElagace,
+    imagePositionMobile: "center 30%",
+    imagePositionDesktop: "center 22%",
     intro: "Assurez la vitalité et la structure optimale de vos arbres",
     desc: "Relevage, élagage esthétique pour retirer les branches mortes et malades, et interventions nécessaires lorsqu'une branche nuit aux fils électriques, à votre maison ou à votre stationnement. Descente contrôlée sur corde disponible.",
     items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Descente contrôlée sur corde"],
@@ -45,6 +58,8 @@ const services = [
     icon: Cable,
     label: "Haubanage",
     image: imgHaubanage,
+    imagePositionMobile: "center 36%",
+    imagePositionDesktop: "center 24%",
     intro: "Soyons préventifs — conservez la beauté de votre arbre",
     desc: "Lorsque des branches charpentières présentent des signes de faiblesse structurale, un câble d'acier permet de limiter les risques de chute — idéal pour les arbres en bord de sentier piéton, surplombant un stationnement ou des bâtiments.",
     items: ["Câble d'acier pour branches charpentières", "Arbres en bord de sentier piéton", "Arbres surplombant stationnements", "Évaluation des risques structuraux"],
@@ -55,6 +70,8 @@ const services = [
     icon: Flower2,
     label: "Taille",
     image: parralaxTreeCare,
+    imagePositionMobile: "center 44%",
+    imagePositionDesktop: "center 31%",
     intro: "Conservez la densité et l'apparence de vos arbres",
     desc: "Haies de conifères ou feuillus, taille de formation et taille d'arbres fruitiers pour une croissance optimale. Une haie non entretenue peut gagner jusqu'à 24 pouces par an — une taille annuelle limite cette expansion à 2 à 4 pouces.",
     items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
@@ -65,6 +82,8 @@ const services = [
     icon: Sprout,
     label: "Plantation et aménagement arboricole",
     image: apprendrePlantation,
+    imagePositionMobile: "center 48%",
+    imagePositionDesktop: "center 36%",
     intro: "Créez des espaces verts durables",
     desc: "Plantations réalisées dans les règles de l'art. Choisissez vos arbres parmi nos pépinières partenaires. Aménagement horticole et conseils pour assurer le futur de vos arbres.",
     items: ["Sélection parmi pépinières partenaires", "Plantation professionnelle", "Aménagement horticole", "Conseils post-plantation"],
@@ -75,6 +94,8 @@ const services = [
     icon: Droplets,
     label: "Fertilisation",
     image: imgFertilisation,
+    imagePositionMobile: "center 34%",
+    imagePositionDesktop: "center 25%",
     intro: "Revitalisez vos arbres et stimulez leur croissance",
     desc: "Apports nutritifs adaptés aux besoins réels de vos arbres : analyse des carences, fertilisants appropriés au moment optimal. Traitement contre les maladies, fertilisation granulaire et par injections disponibles.",
     items: ["Analyse des carences du sol", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies"],
@@ -85,6 +106,8 @@ const services = [
     icon: AlertTriangle,
     label: "Services d'urgence",
     image: imgUrgence,
+    imagePositionMobile: "center 38%",
+    imagePositionDesktop: "center 30%",
     intro: "Reprenez rapidement le contrôle des situations critiques",
     desc: "Tempête, bris de branche menaçant votre maison, arbre tombé bloquant votre accès — nous intervenons sans délai pour sécuriser votre propriété. Disponible 24h/24, 7j/7.",
     items: ["Intervention 24/7", "Dégagement après tempête", "Stabilisation d'arbres dangereux", "Sécurisation de la propriété"],
@@ -95,6 +118,8 @@ const services = [
     icon: Snowflake,
     label: "Déneigement sur corde",
     image: imgDeneigement,
+    imagePositionMobile: "center 32%",
+    imagePositionDesktop: "center 24%",
     intro: "Libérez vos toitures des accumulations dangereuses",
     desc: "Techniques d'accès sur corde spécialisées pour les zones difficiles d'accès, sans endommager votre propriété ni compromettre notre sécurité. Évite les surcharges pouvant causer des affaissements.",
     items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace", "Prévention des surcharges"],
@@ -107,7 +132,7 @@ const NosServices = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg}>
+      <PageHero image={heroBg} imagePositionMobile="center 38%" imagePositionDesktop="center 24%">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           Solutions complètes
         </div>
@@ -175,8 +200,14 @@ const NosServices = () => {
                 >
                   <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out group-hover:scale-105 group-focus-within:scale-105">
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out"
-                      style={{ backgroundImage: `url(${s.image})` }}
+                      className="responsive-focal-bg absolute inset-0 bg-cover transition-transform duration-500 ease-out"
+                      style={
+                        {
+                          backgroundImage: `url(${s.image})`,
+                          "--focal-mobile": s.imagePositionMobile,
+                          "--focal-desktop": s.imagePositionDesktop,
+                        } as CSSProperties
+                      }
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
                     <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/50 group-focus-within:bg-black/50" />

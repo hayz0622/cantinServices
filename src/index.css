@@ -127,4 +127,22 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
   }
+
+  .responsive-focal-bg {
+    background-position: var(--focal-mobile, center);
+  }
+
+  .responsive-focal-object {
+    object-position: var(--focal-mobile, center);
+  }
+
+  @media (min-width: 768px) {
+    .responsive-focal-bg {
+      background-position: var(--focal-desktop, var(--focal-mobile, center));
+    }
+
+    .responsive-focal-object {
+      object-position: var(--focal-desktop, var(--focal-mobile, center));
+    }
+  }
 }

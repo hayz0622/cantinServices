@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +16,11 @@ import { ParallaxImageBand } from "@/components/ParallaxImageBand";
 import { SERVICE_ZONES } from "@/content/zones";
 import { fadeUp } from "@/lib/motionVariants";
 
-const HERO_BG_IMAGES = [heroBg1, heroBg2, heroBg3] as const;
+const HERO_BG_IMAGES = [
+  { src: heroBg1, mobile: "center 44%", desktop: "center 30%" },
+  { src: heroBg2, mobile: "center 40%", desktop: "center 28%" },
+  { src: heroBg3, mobile: "center 38%", desktop: "center 24%" },
+] as const;
 const HERO_BG_INTERVAL_MS = 6500;
 
 const services = [
@@ -69,13 +73,20 @@ const Index = () => {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[88vh] flex items-center justify-center text-center overflow-hidden bg-neutral-950">
         <div className="absolute inset-0" aria-hidden>
-          {HERO_BG_IMAGES.map((src, i) => (
+          {HERO_BG_IMAGES.map((slide, i) => (
             <div
-              key={src}
-              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity ease-in-out ${
+              key={slide.src}
+              className={`responsive-focal-bg absolute inset-0 bg-cover bg-no-repeat transition-opacity ease-in-out ${
                 i === heroBgIndex ? "opacity-100" : "opacity-0"
               }`}
-              style={{ backgroundImage: `url(${src})`, transitionDuration: "1.4s" }}
+              style={
+                {
+                  backgroundImage: `url(${slide.src})`,
+                  "--focal-mobile": slide.mobile,
+                  "--focal-desktop": slide.desktop,
+                  transitionDuration: "1.4s",
+                } as CSSProperties
+              }
             />
           ))}
           <div
@@ -213,7 +224,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={heroBg2} />
+      <ParallaxImageBand src={heroBg2} focalYMobile="48%" focalYDesktop="35%" />
 
       {/* ── Services grid ────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
@@ -295,7 +306,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={parralaxTreeCare} />
+      <ParallaxImageBand src={parralaxTreeCare} focalYMobile="54%" focalYDesktop="40%" />
 
       {/* ── Why choose us ────────────────────────────────────────── */}
       <section className="py-20 gradient-dark text-white relative overflow-hidden">
@@ -418,7 +429,7 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxImageBand src={parralaxRealisations} />
+      <ParallaxImageBand src={parralaxRealisations} focalYMobile="46%" focalYDesktop="33%" />
 
       {/* ── Final CTA ────────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">

@@ -5,7 +5,12 @@ import { PageHero } from "@/components/PageHero";
 const PolitiqueConfidentialite = () => {
   return (
     <div>
-      <PageHero image={heroBg} className="text-white">
+      <PageHero
+        image={heroBg}
+        imagePositionMobile="center 42%"
+        imagePositionDesktop="center 30%"
+        className="text-white"
+      >
         <h1 className="text-4xl md:text-5xl font-display font-extrabold text-white">
           Politique de <span className="text-gradient-amber">confidentialité</span>
         </h1>

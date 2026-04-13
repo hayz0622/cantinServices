@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { ImageIcon, ArrowRight, Camera } from "lucide-react";
 
 import abattage1 from "@/assets/Apprendre - abattage 1.jpg";
@@ -23,27 +24,27 @@ import { fadeUpGallery as fadeUp } from "@/lib/motionVariants";
 const heroBg = avantApres;
 
 const images = [
-  { src: abattage1, alt: "Abattage 1" },
-  { src: abattage2, alt: "Abattage 2" },
-  { src: abattage3, alt: "Abattage 3" },
-  { src: abattage4, alt: "Abattage 4" },
-  { src: avantApres, alt: "Avant / Après" },
-  { src: elagage, alt: "Élagage" },
-  { src: outils, alt: "Outils" },
-  { src: haubanage, alt: "Haubanage" },
-  { src: lumiere1, alt: "Lumière 1" },
-  { src: lumiere2, alt: "Lumière 2" },
-  { src: rabaissage, alt: "Rabaissage" },
-  { src: tailleHaie, alt: "Taille de haie" },
-  { src: urgenceEte, alt: "Urgence été" },
-  { src: urgenceHiver, alt: "Urgence hiver" },
+  { src: abattage1, alt: "Abattage 1", imagePositionMobile: "center 46%", imagePositionDesktop: "center 34%" },
+  { src: abattage2, alt: "Abattage 2", imagePositionMobile: "center 42%", imagePositionDesktop: "center 30%" },
+  { src: abattage3, alt: "Abattage 3", imagePositionMobile: "center 38%", imagePositionDesktop: "center 28%" },
+  { src: abattage4, alt: "Abattage 4", imagePositionMobile: "center 40%", imagePositionDesktop: "center 30%" },
+  { src: avantApres, alt: "Avant / Après", imagePositionMobile: "center 46%", imagePositionDesktop: "center 32%" },
+  { src: elagage, alt: "Élagage", imagePositionMobile: "center 34%", imagePositionDesktop: "center 24%" },
+  { src: outils, alt: "Outils", imagePositionMobile: "center 42%", imagePositionDesktop: "center 30%" },
+  { src: haubanage, alt: "Haubanage", imagePositionMobile: "center 40%", imagePositionDesktop: "center 28%" },
+  { src: lumiere1, alt: "Lumière 1", imagePositionMobile: "center 48%", imagePositionDesktop: "center 34%" },
+  { src: lumiere2, alt: "Lumière 2", imagePositionMobile: "center 46%", imagePositionDesktop: "center 34%" },
+  { src: rabaissage, alt: "Rabaissage", imagePositionMobile: "center 40%", imagePositionDesktop: "center 30%" },
+  { src: tailleHaie, alt: "Taille de haie", imagePositionMobile: "center 36%", imagePositionDesktop: "center 26%" },
+  { src: urgenceEte, alt: "Urgence été", imagePositionMobile: "center 38%", imagePositionDesktop: "center 30%" },
+  { src: urgenceHiver, alt: "Urgence hiver", imagePositionMobile: "center 34%", imagePositionDesktop: "center 26%" },
 ];
 
 const Realisations = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg}>
+      <PageHero image={heroBg} imagePositionMobile="center 40%" imagePositionDesktop="center 30%">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           <Camera size={12} />
           Portfolio
@@ -108,7 +109,13 @@ const Realisations = () => {
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="responsive-focal-object w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={
+                        {
+                          "--focal-mobile": img.imagePositionMobile ?? "center",
+                          "--focal-desktop": img.imagePositionDesktop ?? img.imagePositionMobile ?? "center",
+                        } as CSSProperties
+                      }
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/20 transition-colors duration-300 flex items-end">

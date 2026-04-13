@@ -3,10 +3,19 @@ import { useEffect, useRef } from "react";
 type ParallaxImageBandProps = {
   src: string;
   className?: string;
+  focalX?: string;
+  focalYMobile?: string;
+  focalYDesktop?: string;
 };
 
 
-export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProps) {
+export function ParallaxImageBand({
+  src,
+  className = "",
+  focalX = "50%",
+  focalYMobile = "45%",
+  focalYDesktop = "38%",
+}: ParallaxImageBandProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,10 +25,12 @@ export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProp
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let rafId = 0;
+    const getBaseY = () => (window.innerWidth >= 768 ? focalYDesktop : focalYMobile);
 
     const apply = () => {
+      const baseY = getBaseY();
       if (mq.matches) {
-        el.style.backgroundPosition = "50% calc(50% - 68px)";
+        el.style.backgroundPosition = `${focalX} ${baseY}`;
         return;
       }
       const raw = el.getAttribute("data-parallax-velocity");
@@ -27,7 +38,7 @@ export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProp
       const rect = el.getBoundingClientRect();
       const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
       const shift = centerOffset * (Number.isFinite(v) ? v : 0.2);
-      el.style.backgroundPosition = `50% calc(50% - 68px + ${shift}px)`;
+      el.style.backgroundPosition = `${focalX} calc(${baseY} + ${shift}px)`;
     };
 
     const loop = () => {
@@ -96,7 +107,7 @@ export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProp
       window.removeEventListener("resize", onResize);
       mq.removeEventListener("change", onMqChange);
     };
-  }, []);
+  }, [focalX, focalYDesktop, focalYMobile]);
 
   return (
     <div
@@ -108,7 +119,7 @@ export function ParallaxImageBand({ src, className = "" }: ParallaxImageBandProp
         backgroundImage: `url(${src})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "50% calc(50% - 68px)",
+        backgroundPosition: `${focalX} ${focalYMobile}`,
       }}
     />
   );

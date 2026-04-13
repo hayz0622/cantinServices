@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -9,18 +9,38 @@ const HERO_OVERLAY =
 type PageHeroProps = {
   image: string;
   children: ReactNode;
+  /** Fallback focal position (used when specific mobile/desktop values are not provided). */
+  imagePosition?: string;
+  /** CSS background-position for mobile widths. */
+  imagePositionMobile?: string;
+  /** CSS background-position from md breakpoint and up. */
+  imagePositionDesktop?: string;
   /** Renders the white wave SVG at the bottom of the hero. */
   showWave?: boolean;
   className?: string;
 };
 
-export function PageHero({ image, children, showWave = true, className }: PageHeroProps) {
+export function PageHero({
+  image,
+  children,
+  imagePosition = "center",
+  imagePositionMobile,
+  imagePositionDesktop,
+  showWave = true,
+  className,
+}: PageHeroProps) {
+  const backgroundStyle = {
+    backgroundImage: `url(${image})`,
+    "--focal-mobile": imagePositionMobile ?? imagePosition,
+    "--focal-desktop": imagePositionDesktop ?? imagePositionMobile ?? imagePosition,
+  } as CSSProperties;
+
   return (
     <section className={cn("relative py-24 text-center overflow-hidden bg-neutral-950", className)}>
       <div className="absolute inset-0" aria-hidden>
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${image})` }}
+          className="responsive-focal-bg absolute inset-0 bg-cover bg-no-repeat"
+          style={backgroundStyle}
         />
         <div
           className="absolute inset-0 pointer-events-none"

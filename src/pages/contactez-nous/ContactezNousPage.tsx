@@ -278,7 +278,7 @@ const ContactezNous = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg}>
+      <PageHero image={heroBg} imagePositionMobile="center 38%" imagePositionDesktop="center 28%">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           <MessageSquare size={12} />
           Prenons contact
