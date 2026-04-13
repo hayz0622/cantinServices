@@ -3,12 +3,24 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ImageIcon, CheckCircle2, Lightbulb, AlertCircle } from "lucide-react";
 
+import imgAbattage from "@/assets/apprendre-abattage.jpg";
+import imgElagage from "@/assets/apprendre_elagage_1.jpg";
+import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
+import imgTaille from "@/assets/apprendre-taille.jpg";
+import imgPlantation from "@/assets/apprendre_plantation_1.avif";
+import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
+import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
+import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
+import heroBg from "@/assets/Apprendre - Taille de formation.jpg";
+
+import { PageHero } from "@/components/PageHero";
+
 const sections = [
   {
     id: "abattage",
     title: "Abattage",
     badge: "Service principal",
-    image: "",
+    image: imgAbattage,
     desc: "L'abattage d'arbres est une opération délicate qui nécessite une expertise professionnelle. Nos arboristes diplômés évaluent chaque situation pour choisir la méthode la plus sécuritaire. Rappelons que l'arbre crée de l'ombre, bloque les bourrasques de vent, crée de l'intimité, et peut prendre bien plus que le cours d'une vie pour se développer à maturité — nous traitons chaque abattage avec soin.",
     items: ["Démontage d'arbre en grimpe", "Abattage par le pied", "Déboisement résidentiel (construction)", "Déboisement pour chemin privé", "Nettoyage pour érablière"],
     subSections: [
@@ -28,7 +40,7 @@ const sections = [
     id: "elagage",
     title: "Élagage",
     badge: "Entretien régulier",
-    image: "",
+    image: imgElagage,
     desc: "L'élagage consiste à retirer les branches mortes, malades ou dangereuses pour maintenir la santé et l'esthétique de vos arbres. Un élagage régulier prévient les risques de chutes de branches et prolonge la vie de l'arbre.",
     items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Taille de réduction", "Descente contrôlée sur corde"],
     accent: "primary",
@@ -37,7 +49,7 @@ const sections = [
     id: "haubanage",
     title: "Haubanage",
     badge: "Sécurité & prévention",
-    image: "",
+    image: imgHaubanage,
     desc: "Le haubanage permet de sauvegarder des arbres matures en réduisant le stress mécanique causé par les vents violents et le verglas. C'est souvent une solution plus économique que l'abattage complet, tout en préservant la valeur esthétique et l'ombre de votre propriété.",
     items: ["Installation de câbles dynamiques", "Haubanage de sécurité structurale", "Évaluation des risques", "Suivi et ajustement annuel"],
     subSections: [
@@ -59,7 +71,7 @@ const sections = [
     id: "taille",
     title: "Taille",
     badge: "Ornemental & fruitier",
-    image: "",
+    image: imgTaille,
     desc: "La taille de haies et d'arbustes ornementaux favorise une croissance saine et une esthétique impeccable.",
     items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
     subSections: [
@@ -84,7 +96,7 @@ const sections = [
     id: "plantation",
     title: "Plantation et aménagement arboricole",
     badge: "Aménagement",
-    image: "",
+    image: imgPlantation,
     desc: "Nous vous aidons à choisir les bonnes espèces d'arbres et d'arbustes adaptées à votre terrain, au climat et à vos objectifs paysagers. Plantations réalisées dans les règles de l'art.",
     items: ["Sélection parmi nos pépinières partenaires", "Préparation et amendement du sol", "Plantation professionnelle", "Aménagement horticole", "Conseils d'entretien post-plantation"],
     accent: "primary",
@@ -93,7 +105,7 @@ const sections = [
     id: "fertilisation",
     title: "Fertilisation",
     badge: "Santé du sol",
-    image: "",
+    image: imgFertilisation,
     desc: "La fertilisation adaptée renforce la vitalité de vos arbres et améliore la qualité de votre sol. Nos experts analysent votre terrain pour recommander le traitement idéal au moment optimal.",
     items: ["Analyse des carences du sol", "Fertilisation profonde", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies", "Programme d'entretien annuel"],
     accent: "primary",
@@ -102,7 +114,7 @@ const sections = [
     id: "urgence",
     title: "Services d'urgence",
     badge: "Disponible 24/7",
-    image: "",
+    image: imgUrgence,
     desc: "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
     items: ["Intervention 24h/7j", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête ou verglas"],
     accent: "accent",
@@ -111,7 +123,7 @@ const sections = [
     id: "deneigement",
     title: "Déneigement sur corde",
     badge: "Service hivernal",
-    image: "",
+    image: imgDeneigement,
     desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
     items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace et de surcharges", "Prévention des affaissements de toiture"],
     accent: "accent",
@@ -133,34 +145,17 @@ const Apprendre = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative gradient-hero py-24 text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/3 -right-20 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,85%,50%)" }} />
+      <PageHero image={heroBg}>
+        <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
+          Guide complet
         </div>
-        <div className="container relative">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-              Guide complet
-            </div>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              Apprendre sur l'entretien <span className="text-gradient-amber">de l'arbre</span>
-            </h1>
-            <p className="text-white/60 max-w-xl mx-auto text-lg">
-              Découvrez en détail chacun de nos services d'arboriculture professionnelle.
-            </p>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 50" fill="none" className="w-full">
-            <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+        <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
+          Apprendre sur l'entretien <span className="text-gradient-amber">de l'arbre</span>
+        </h1>
+        <p className="text-white/60 max-w-xl mx-auto text-lg">
+          Découvrez en détail chacun de nos services d'arboriculture professionnelle.
+        </p>
+      </PageHero>
 
       {/* ── Sections ─────────────────────────────────────────── */}
       {sections.map((s, i) => (

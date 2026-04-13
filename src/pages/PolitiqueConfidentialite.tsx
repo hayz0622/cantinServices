@@ -1,13 +1,15 @@
+import heroBg from "@/assets/realisation - paysage automne.jpg";
+
+import { PageHero } from "@/components/PageHero";
+
 const PolitiqueConfidentialite = () => {
   return (
     <div>
-      <section className="bg-secondary py-20 text-center text-secondary-foreground">
-        <div className="container">
-          <h1 className="text-4xl md:text-5xl font-display font-bold">
-            Politique de <span className="text-primary">confidentialité</span>
-          </h1>
-        </div>
-      </section>
+      <PageHero image={heroBg} className="text-white">
+        <h1 className="text-4xl md:text-5xl font-display font-extrabold text-white">
+          Politique de <span className="text-gradient-amber">confidentialité</span>
+        </h1>
+      </PageHero>
 
       <section className="py-16">
         <div className="container max-w-3xl prose prose-headings:font-display prose-headings:text-foreground prose-p:text-muted-foreground">

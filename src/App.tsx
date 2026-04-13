@@ -9,7 +9,7 @@ import Index from "./pages/Index";
 import NosServices from "./pages/NosServices";
 import Apprendre from "./pages/Apprendre";
 import Realisations from "./pages/Realisations";
-import ContactezNous from "./pages/ContactezNous";
+import ContactezNous from "./pages/contactez-nous/ContactezNousPage";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import NotFound from "./pages/NotFound";
 

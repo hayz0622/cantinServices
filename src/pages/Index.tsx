@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -5,6 +6,18 @@ import {
   AlertTriangle, Snowflake, Award, HeartHandshake, Clock,
   MapPin, Phone, ArrowRight, CheckCircle2, ShieldCheck,
 } from "lucide-react";
+
+import heroBg1 from "@/assets/hero-bg-1.png";
+import heroBg2 from "@/assets/hero-bg-2.png";
+import heroBg3 from "@/assets/hero-bg-3.png";
+import parralaxTreeCare from "@/assets/parallax-treecare.jpg";
+import parralaxRealisations from "@/assets/realisations-relevage-halle.jpg";
+import { ParallaxImageBand } from "@/components/ParallaxImageBand";
+import { SERVICE_ZONES } from "@/content/zones";
+import { fadeUp } from "@/lib/motionVariants";
+
+const HERO_BG_IMAGES = [heroBg1, heroBg2, heroBg3] as const;
+const HERO_BG_INTERVAL_MS = 6500;
 
 const services = [
   { icon: TreePine, label: "Abattage", desc: "Abattage sécuritaire d'arbres de toutes tailles", color: "from-green-500/10 to-green-600/5" },
@@ -41,37 +54,35 @@ const whyChoose = [
   },
 ];
 
-const zones = [
-  "Mauricie", "Mékinac", "Saint-Tite", "Shawinigan",
-  "Saint-Marc-des-Carrières", "Saint-Ubalde", "Rivière-à-Pierre",
-  "Lac-aux-Sables", "Saint-Maurice", "Trois-Rivières",
-  "Sainte-Catherine", "Lac Sept Îles", "Lac-Saint-Joseph",
-  "Portneuf", "Saint-Raymond", "Pont-Rouge", "Québec",
-  "Et davantage…",
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
-  }),
-};
-
 const Index = () => {
+  const [heroBgIndex, setHeroBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setHeroBgIndex((i) => (i + 1) % HERO_BG_IMAGES.length);
+    }, HERO_BG_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
     <div>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[88vh] flex items-center justify-center text-center overflow-hidden gradient-hero">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 -left-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(80,58%,38%)" }} />
-          <div className="absolute bottom-1/4 -right-24 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "hsl(35,85%,50%)" }} />
+      <section className="relative min-h-[88vh] flex items-center justify-center text-center overflow-hidden bg-neutral-950">
+        <div className="absolute inset-0" aria-hidden>
+          {HERO_BG_IMAGES.map((src, i) => (
+            <div
+              key={src}
+              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity ease-in-out ${
+                i === heroBgIndex ? "opacity-100" : "opacity-0"
+              }`}
+              style={{ backgroundImage: `url(${src})`, transitionDuration: "1.4s" }}
+            />
+          ))}
           <div
-            className="absolute inset-0 opacity-[0.03]"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-              backgroundSize: "40px 40px",
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.72) 100%)",
             }}
           />
         </div>
@@ -202,6 +213,8 @@ const Index = () => {
         </div>
       </section>
 
+      <ParallaxImageBand src={heroBg2} />
+
       {/* ── Services grid ────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
         <div className="container">
@@ -281,6 +294,8 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+
+      <ParallaxImageBand src={parralaxTreeCare} />
 
       {/* ── Why choose us ────────────────────────────────────────── */}
       <section className="py-20 gradient-dark text-white relative overflow-hidden">
@@ -390,7 +405,7 @@ const Index = () => {
             variants={fadeUp}
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto"
           >
-            {zones.map((z) => (
+            {SERVICE_ZONES.map((z) => (
               <div
                 key={z}
                 className="flex items-center gap-2.5 bg-muted/50 rounded-xl px-4 py-3 border border-border/50 text-sm font-medium hover:bg-primary/6 hover:border-primary/20 hover:text-primary transition-all duration-200 group"
@@ -402,6 +417,8 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+
+      <ParallaxImageBand src={parralaxRealisations} />
 
       {/* ── Final CTA ────────────────────────────────────────────── */}
       <section className="py-20 bg-cream-dark">
