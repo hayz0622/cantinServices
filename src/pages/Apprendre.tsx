@@ -11,6 +11,7 @@ import imgPlantation from "@/assets/apprendre_plantation_1.avif";
 import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
 import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
+import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
 import heroBg from "@/assets/Apprendre - Taille de formation.jpg";
 
 import { PageHero } from "@/components/PageHero";
@@ -137,7 +138,7 @@ const sections = [
     id: "deneigement",
     title: "Déneigement sur corde",
     badge: "Service hivernal",
-    image: imgDeneigement,
+    image: imgDeneigementCorde,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 40%",
     desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",

@@ -8,6 +8,7 @@ import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
 import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
 import imgUrgence from "@/assets/galerie-urgence-hiver.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
+import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
 import apprendreElagace from "@/assets/apprendre_elagage_1.jpg";
 import apprendrePlantation from "@/assets/apprendre_plantation_1.avif";
 import parralaxTreeCare from "@/assets/parallax-treecare.jpg";
@@ -113,11 +114,12 @@ const services: Service[] = [
     items: ["Intervention 24/7", "Dégagement après tempête", "Stabilisation d'arbres dangereux", "Sécurisation de la propriété"],
     hash: "urgence",
     gradient: "from-amber-500/15 to-amber-700/5",
+
   },
   {
     icon: Snowflake,
     label: "Déneigement sur corde",
-    image: imgDeneigement,
+    image: imgDeneigementCorde,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 38%",
     intro: "Libérez vos toitures des accumulations dangereuses",
