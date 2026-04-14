@@ -72,6 +72,7 @@ const ContactezNous = () => {
   const [fileInputKey, setFileInputKey] = useState(0);
   const [isSending, setIsSending] = useState(false);
 
+  const [honeyField, setHoneyField] = useState("");
   const [detailError, setDetailError] = useState("");
 
   const resetDetailFields = useCallback(() => {
@@ -179,6 +180,7 @@ const ContactezNous = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (honeyField) return;
     if (!needType) {
       toast.error("Veuillez sélectionner un type de besoin.");
       return;
@@ -414,6 +416,10 @@ const ContactezNous = () => {
                 </h2>
                 <p className="text-sm font-medium text-muted-foreground mb-6">Service 4 saisons</p>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <div aria-hidden="true" className="absolute" style={{ left: "-9999px", opacity: 0, height: 0, overflow: "hidden" }}>
+                    <label htmlFor="website_url">Ne pas remplir</label>
+                    <input id="website_url" name="website_url" type="text" tabIndex={-1} autoComplete="off" value={honeyField} onChange={(e) => setHoneyField(e.target.value)} />
+                  </div>
                   <div>
                     <Label className="text-sm font-bold mb-2 block leading-snug">
                       Vous recherchez un professionnel pour quel besoin ?{" "}
@@ -882,6 +888,11 @@ const ContactezNous = () => {
                             className="sr-only"
                             onChange={(e) => {
                               const f = e.target.files?.[0] ?? null;
+                              if (f && f.size > 5 * 1024 * 1024) {
+                                toast.error("La photo ne doit pas dépasser 5 Mo.");
+                                setFileInputKey((k) => k + 1);
+                                return;
+                              }
                               setPhotoFile(f);
                               setPhotoName(f ? f.name : null);
                             }}

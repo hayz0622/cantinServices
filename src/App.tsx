@@ -1,23 +1,34 @@
-import { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "./components/Layout";
-import Index from "./pages/Index";
-import NosServices from "./pages/NosServices";
-import Apprendre from "./pages/Apprendre";
-import Realisations from "./pages/Realisations";
-import ContactezNous from "./pages/contactez-nous/ContactezNousPage";
-import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
-import NotFound from "./pages/NotFound";
 
-/** Scrolls to top on route change, or to a #hash section if present. */
+const Index = lazy(() => import("./pages/Index"));
+const NosServices = lazy(() => import("./pages/NosServices"));
+const Apprendre = lazy(() => import("./pages/Apprendre"));
+const Realisations = lazy(() => import("./pages/Realisations"));
+const ContactezNous = lazy(() => import("./pages/contactez-nous/ContactezNousPage"));
+const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+const PAGE_TITLES: Record<string, string> = {
+  "/": "Cantin Services d'arbres — Émondage à Saint-Stanislas",
+  "/nos-services": "Nos Services — Cantin Services d'arbres",
+  "/apprendre": "Apprendre — Cantin Services d'arbres",
+  "/realisations": "Réalisations — Cantin Services d'arbres",
+  "/contactez-nous": "Contactez-nous — Cantin Services d'arbres",
+  "/politique-de-confidentialite": "Politique de confidentialité — Cantin Services d'arbres",
+};
+
+/** Scrolls to top on route change, or to a #hash section if present. Also sets the page title. */
 const ScrollToTopOrHash = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    document.title = PAGE_TITLES[pathname] ?? "Cantin Services d'arbres";
+
     if (hash) {
       const id = hash.replace("#", "");
       const el = document.getElementById(id);
@@ -32,16 +43,20 @@ const ScrollToTopOrHash = () => {
   return null;
 };
 
-const queryClient = new QueryClient();
+const PageLoader = () => (
+  <div className="flex min-h-[60vh] items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+  </div>
+);
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTopOrHash />
-        <Layout>
+  <TooltipProvider>
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
+      <ScrollToTopOrHash />
+      <Layout>
+        <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/nos-services" element={<NosServices />} />
@@ -51,10 +66,10 @@ const App = () => (
             <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+        </Suspense>
+      </Layout>
+    </BrowserRouter>
+  </TooltipProvider>
 );
 
 export default App;

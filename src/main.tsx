@@ -1,7 +1,10 @@
 import { createRoot } from "react-dom/client";
+import { inject } from "@vercel/analytics";
 import App from "./App.tsx";
 import "./index.css";
 import logo from "@/assets/logo.png";
+
+inject();
 
 // Use the site logo as the favicon (Vite resolves the imported image to a URL).
 const faviconId = "site-favicon";
