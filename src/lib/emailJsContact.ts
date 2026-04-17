@@ -2,12 +2,24 @@ import emailjs from "@emailjs/browser";
 import type { NeedType } from "@/content/serviceNeeds";
 import { needLabels } from "@/content/serviceNeeds";
 
+const MAX_RAPPORT_UTF8_BYTES = 35 * 1024;
+
 function escapeHtml(s: string) {
   return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function truncateUtf8Bytes(s: string, maxBytes: number): string {
+  const enc = new TextEncoder();
+  if (enc.encode(s).length <= maxBytes) return s;
+  let end = s.length;
+  while (end > 0 && enc.encode(s.slice(0, end)).length > maxBytes) {
+    end -= 1;
+  }
+  return `${s.slice(0, end)}\n\n[… Texte tronqué : limite EmailJS (~50 Ko pour les variables).]`;
 }
 
 export function buildSubmissionEmailHtml(rapport: string) {
@@ -37,30 +49,75 @@ export function buildSubmissionEmailHtml(rapport: string) {
 </table>`.trim();
 }
 
-function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const res = reader.result as string;
-      const comma = res.indexOf(",");
-      resolve(comma >= 0 ? res.slice(comma + 1) : res);
+async function uploadPhotoToCloudinary(photoFile: File): Promise<string> {
+  const { cloudinaryCloudName, cloudinaryUploadPreset } = getConfig();
+  if (!cloudinaryCloudName || !cloudinaryUploadPreset) {
+    throw new Error("CLOUDINARY_NOT_CONFIGURED");
+  }
+
+  const formData = new FormData();
+  formData.append("file", photoFile);
+  formData.append("upload_preset", cloudinaryUploadPreset);
+
+  const endpoint = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload`;
+  const response = await fetch(endpoint, { method: "POST", body: formData });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`CLOUDINARY_UPLOAD_FAILED: ${response.status} ${errorText}`);
+  }
+  const payload = (await response.json()) as { secure_url?: string };
+  if (!payload.secure_url) {
+    throw new Error("CLOUDINARY_UPLOAD_FAILED: secure_url missing");
+  }
+  return payload.secure_url;
+}
+
+function sleep(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
+
+function serializeEmailJsError(err: unknown) {
+  if (err && typeof err === "object" && "status" in err) {
+    const e = err as { status: number; text?: string };
+    return {
+      kind: "EmailJSResponseStatus",
+      status: e.status,
+      text: typeof e.text === "string" ? e.text : undefined,
     };
-    reader.onerror = () => reject(reader.error ?? new Error("Lecture du fichier impossible."));
-    reader.readAsDataURL(file);
-  });
+  }
+  if (err instanceof Error) {
+    return { kind: "Error", name: err.name, message: err.message, stack: err.stack };
+  }
+  return { kind: "unknown", string: String(err) };
+}
+
+async function reportEmailJsErrorToDevTerminal(payload: Record<string, unknown>) {
+  if (!import.meta.env.DEV) return;
+  try {
+    await fetch("/__cantin/dev-emailjs-log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ at: new Date().toISOString(), ...payload }),
+    });
+  } catch {
+    // no-op
+  }
 }
 
 function getConfig() {
   return {
     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    adminTemplateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    confirmationTemplateId: import.meta.env.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID,
+    cloudinaryCloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+    cloudinaryUploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
   };
 }
 
 export function isEmailJsConfigured() {
   const c = getConfig();
-  return Boolean(c.publicKey && c.serviceId && c.templateId);
+  return Boolean(c.publicKey && c.serviceId && c.adminTemplateId && c.confirmationTemplateId);
 }
 
 export class EmailJsNotConfiguredError extends Error {
@@ -69,7 +126,6 @@ export class EmailJsNotConfiguredError extends Error {
     this.name = "EmailJsNotConfiguredError";
   }
 }
-
 
 export async function sendContactEmail(params: {
   needType: NeedType;
@@ -80,26 +136,62 @@ export async function sendContactEmail(params: {
   rapport: string;
   photoFile: File | null;
 }) {
-  const { publicKey, serviceId, templateId } = getConfig();
-  if (!publicKey || !serviceId || !templateId) {
+  const { publicKey, serviceId, adminTemplateId, confirmationTemplateId } = getConfig();
+  if (!publicKey || !serviceId || !adminTemplateId || !confirmationTemplateId) {
     throw new EmailJsNotConfiguredError();
   }
 
-  const templateParams: Record<string, unknown> = {
-    subject_line: `[Cantin Services] Demande — ${needLabels[params.needType]}`,
-    reply_to: params.courriel,
-    from_name: `${params.prenom} ${params.nom}`.trim(),
-    user_phone: params.telephone,
-    service_type: needLabels[params.needType],
-    message: params.rapport,
-    html_content: buildSubmissionEmailHtml(params.rapport),
-  };
+  const subjectLine = `[Cantin Services] Demande — ${needLabels[params.needType]}`;
+  const fromName = `${params.prenom} ${params.nom}`.trim();
+  const serviceType = needLabels[params.needType];
 
-  if (params.photoFile) {
-    const data = await fileToBase64(params.photoFile);
-    const safeName = params.photoFile.name.replace(/[^\w.\- ]+/g, "_") || "photo";
-    templateParams.attachments = [{ name: safeName, data }];
+  try {
+    let rapportBody = params.rapport;
+    if (params.photoFile) {
+      const cloudinaryUrl = await uploadPhotoToCloudinary(params.photoFile);
+      rapportBody = `${rapportBody}\n\n── Photo transmise (Cloudinary) ──\nNom du fichier : ${params.photoFile.name}\nLien : ${cloudinaryUrl}`;
+    }
+    const rapportForEmail = truncateUtf8Bytes(rapportBody, MAX_RAPPORT_UTF8_BYTES);
+    const htmlContent = buildSubmissionEmailHtml(rapportForEmail);
+
+    await emailjs.send(
+      serviceId,
+      adminTemplateId,
+      {
+        subject_line: subjectLine,
+        reply_to: params.courriel,
+        from_name: fromName,
+        user_phone: params.telephone,
+        service_type: serviceType,
+        html_content: htmlContent,
+      },
+      { publicKey },
+    );
+
+    await sleep(1100);
+
+    const confirmationTemplateParams: Record<string, unknown> = {
+      name: fromName,
+      title: serviceType,
+      to_email: params.courriel,
+      email: params.courriel,
+      reply_to: "cantinservicesdarbres@gmail.com",
+      subject_line: `Confirmation de votre demande — ${serviceType}`,
+    };
+
+    await emailjs.send(serviceId, confirmationTemplateId, confirmationTemplateParams, { publicKey });
+  } catch (err) {
+    await reportEmailJsErrorToDevTerminal({
+      step: "sendContactEmail",
+      cloudinaryEnabled: true,
+      photo: params.photoFile
+        ? { name: params.photoFile.name, size: params.photoFile.size, type: params.photoFile.type }
+        : null,
+      serviceId,
+      adminTemplateId,
+      confirmationTemplateId,
+      error: serializeEmailJsError(err),
+    });
+    throw err;
   }
-
-  await emailjs.send(serviceId, templateId, templateParams, { publicKey });
 }

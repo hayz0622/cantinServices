@@ -238,7 +238,7 @@ const ContactezNous = () => {
 
     if (!isEmailJsConfigured()) {
       toast.error(
-        "Envoi courriel non configuré. Ajoutez VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID et VITE_EMAILJS_TEMPLATE_ID dans un fichier .env (voir .env.example).",
+        "Envoi courriel non configuré. Ajoutez VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID et VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID dans un fichier .env (voir .env.example).",
       );
       return;
     }
@@ -261,7 +261,9 @@ const ContactezNous = () => {
       resetContactFields();
     } catch (err) {
       if (err instanceof EmailJsNotConfiguredError) {
-        toast.error("Configuration EmailJS manquante. Vérifiez les variables VITE_EMAILJS_* dans .env.");
+        toast.error(
+          "Configuration EmailJS manquante. Vérifiez VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID et VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID dans .env.",
+        );
       } else {
         console.error(err);
         toast.error("L'envoi a échoué. Réessayez ou appelez le 418-255-1688.");
