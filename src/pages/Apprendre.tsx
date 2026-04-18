@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties, type ReactNode } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle2, Lightbulb, AlertCircle, Info } from "lucide-react";
@@ -10,6 +10,9 @@ import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
 import imgTaille from "@/assets/apprendre-taille.jpg";
 import imgPlantation from "@/assets/apprendre_plantation_1.avif";
 import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
+import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
+import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
+import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
 import heroBg from "@/assets/Apprendre - Taille de formation.jpg";
 
 import { PageHero } from "@/components/PageHero";
@@ -332,6 +335,32 @@ const sections: Section[] = [
       },
     ],
     accent: "primary",
+  },
+  {
+    id: "urgence",
+    title: "Services d'urgence",
+    badge: "Disponible 24/7",
+    image: imgUrgence,
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 42%",
+    paragraphs: [
+      "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
+    ],
+    items: ["Intervention 24h/7j", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête ou verglas"],
+    accent: "accent",
+  },
+  {
+    id: "deneigement",
+    title: "Déneigement sur corde",
+    badge: "Service hivernal",
+    image: imgDeneigementCorde,
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 40%",
+    paragraphs: [
+      "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
+    ],
+    items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace et de surcharges", "Prévention des affaissements de toiture"],
+    accent: "accent",
   },
 ];
 
