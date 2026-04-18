@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties, type ReactNode } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle2, Lightbulb, AlertCircle, Info } from "lucide-react";
