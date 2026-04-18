@@ -396,7 +396,7 @@ function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
         <img
           src={sub.image}
           alt={sub.title}
-          className="w-full h-48 object-cover rounded-xl mb-4"
+          className="w-full h-64 md:h-80 object-cover rounded-xl mb-4"
           loading="lazy"
         />
       )}
