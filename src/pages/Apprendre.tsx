@@ -343,7 +343,9 @@ const sections: Section[] = [
     image: imgUrgence,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 42%",
-    desc: "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
+    paragraphs: [
+      "En cas de tempête, de verglas ou de bris d'arbre imprévu, notre équipe intervient rapidement 24 heures sur 24, 7 jours sur 7, pour sécuriser votre propriété sans délai.",
+    ],
     items: ["Intervention 24h/7j", "Dégagement de routes et entrées", "Stabilisation d'arbres dangereux", "Nettoyage après tempête ou verglas"],
     accent: "accent",
   },
@@ -354,7 +356,9 @@ const sections: Section[] = [
     image: imgDeneigementCorde,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 40%",
-    desc: "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
+    paragraphs: [
+      "Notre service de déneigement de toitures utilise des techniques d'accès sur corde spécialisées pour atteindre les zones difficiles d'accès, sans endommager votre propriété ni compromettre la sécurité de notre équipe.",
+    ],
     items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace et de surcharges", "Prévention des affaissements de toiture"],
     accent: "accent",
   },
