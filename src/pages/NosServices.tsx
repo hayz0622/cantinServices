@@ -25,7 +25,7 @@ type Service = {
   intro: string;
   desc: string;
   items: string[];
-  hash: string;
+  hash?: string;
   gradient: string;
 };
 
@@ -36,9 +36,9 @@ const services: Service[] = [
     image: imgAbattage,
     imagePositionMobile: "center 50%",
     imagePositionDesktop: "center 45%",
-    intro: "Arbres dangereux ou encombrants",
-    desc: "Nos professionnels utilisent des techniques de démontage sécuritaire adaptées à chaque situation. Chaque cas est évalué avec soin pour choisir la méthode la plus appropriée — abattage par le pied ou démontage en espace restreint.",
-    items: ["Abattage conventionnel par le pied", "Démontage en espace restreint", "Essouchage", "Nettoyage complet du site"],
+    intro: "",
+    desc: "Confiez l'abattage de vos arbres dangereux ou encombrants à des professionnels qui maîtrisent les techniques de démontage sécuritaire. On évalue chaque situation avec soin pour déterminer la méthode la plus appropriée.",
+    items: [],
     hash: "abattage",
     gradient: "from-green-500/15 to-green-700/5",
   },
@@ -48,9 +48,9 @@ const services: Service[] = [
     image: apprendreElagace,
     imagePositionMobile: "center 40%",
     imagePositionDesktop: "center 35%",
-    intro: "Assurez la vitalité et la structure optimale de vos arbres",
-    desc: "Relevage, élagage esthétique pour retirer les branches mortes et malades, et interventions nécessaires lorsqu'une branche nuit aux fils électriques, à votre maison ou à votre stationnement. Descente contrôlée sur corde disponible.",
-    items: ["Élagage d'entretien et sanitaire", "Élagage de formation", "Relevage de couronne", "Descente contrôlée sur corde"],
+    intro: "Assurez la vitalité et la structure optimale de vos arbres.",
+    desc: "",
+    items: ["Relevage", "Élagage esthétique : les branches mortes et malades", "Nécessité : branche nuisible pour les fils électriques, votre maison, votre stationnement, etc.", "Descente contrôlée sur corde"],
     hash: "elagage",
     gradient: "from-emerald-500/15 to-emerald-700/5",
   },
@@ -60,9 +60,9 @@ const services: Service[] = [
     image: imgHaubanage,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 40%",
-    intro: "Soyons préventifs — conservez la beauté de votre arbre",
-    desc: "Lorsque des branches charpentières présentent des signes de faiblesse structurale, un câble d'acier permet de limiter les risques de chute — idéal pour les arbres en bord de sentier piéton, surplombant un stationnement ou des bâtiments.",
-    items: ["Câble d'acier pour branches charpentières", "Arbres en bord de sentier piéton", "Arbres surplombant stationnements", "Évaluation des risques structuraux"],
+    intro: "",
+    desc: "Soyons préventifs. Conservez la beauté de votre arbre en gardant toutes ses branches charpentières même si elles montrent des signes de faiblesse structurale ou surplombent vos propriétés sous l'arbre. Par cette intervention, nous limitons les risques de chute en soutenant les parties visées par un câble d'acier.\n\nPar exemple, il est fréquent d'haubaner les arbres en bord de sentier piéton ou bien les arbres surplombant votre stationnement ou vos bâtiments pour éviter tout risque de chute.",
+    items: [],
     hash: "haubanage",
     gradient: "from-teal-500/15 to-teal-700/5",
   },
@@ -72,9 +72,9 @@ const services: Service[] = [
     image: parralaxTreeCare,
     imagePositionMobile: "center 55%",
     imagePositionDesktop: "center 50%",
-    intro: "Conservez la densité et l'apparence de vos arbres",
-    desc: "Haies de conifères ou feuillus, taille de formation et taille d'arbres fruitiers pour une croissance optimale. Une haie non entretenue peut gagner jusqu'à 24 pouces par an — une taille annuelle limite cette expansion à 2 à 4 pouces.",
-    items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers", "Taille de rajeunissement"],
+    intro: "Conservez la densité et l'apparence de vos arbres avec nos services de taille variés.",
+    desc: "",
+    items: ["Haies de conifères ou feuillus", "Taille de formation", "Taille d'arbres fruitiers"],
     hash: "taille",
     gradient: "from-lime-500/15 to-lime-700/5",
   },
@@ -84,9 +84,9 @@ const services: Service[] = [
     image: apprendrePlantation,
     imagePositionMobile: "center 55%",
     imagePositionDesktop: "center 50%",
-    intro: "Créez des espaces verts durables",
-    desc: "Plantations réalisées dans les règles de l'art. Choisissez vos arbres parmi nos pépinières partenaires. Aménagement horticole et conseils pour assurer le futur de vos arbres.",
-    items: ["Sélection parmi pépinières partenaires", "Plantation professionnelle", "Aménagement horticole", "Conseils post-plantation"],
+    intro: "Créez des espaces verts durables avec des plantations réalisées dans les règles.",
+    desc: "",
+    items: ["Choisissez vos arbres parmi nos pépinières partenaires", "Aménagement horticole", "Assurez le futur de vos arbres"],
     hash: "plantation",
     gradient: "from-green-600/15 to-green-800/5",
   },
@@ -96,9 +96,9 @@ const services: Service[] = [
     image: imgFertilisation,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 40%",
-    intro: "Revitalisez vos arbres et stimulez leur croissance",
-    desc: "Apports nutritifs adaptés aux besoins réels de vos arbres : analyse des carences, fertilisants appropriés au moment optimal. Traitement contre les maladies, fertilisation granulaire et par injections disponibles.",
-    items: ["Analyse des carences du sol", "Fertilisation granulaire", "Fertilisation par injections", "Traitement contre les maladies"],
+    intro: "",
+    desc: "Revitalisez vos arbres ou stimulez leur croissance avec des apports nutritifs adaptés à leurs besoins réels. On analyse les carences pour appliquer les fertilisants appropriés au moment optimal.",
+    items: ["Traitement contre les maladies", "Fertilisation granulaire", "Fertilisation par injections"],
     hash: "fertilisation",
     gradient: "from-cyan-500/15 to-cyan-700/5",
   },
@@ -108,10 +108,10 @@ const services: Service[] = [
     image: imgUrgence,
     imagePositionMobile: "center 48%",
     imagePositionDesktop: "center 42%",
-    intro: "Reprenez rapidement le contrôle des situations critiques",
-    desc: "Tempête, bris de branche menaçant votre maison, arbre tombé bloquant votre accès — nous intervenons sans délai pour sécuriser votre propriété. Disponible 24h/24, 7j/7.",
-    items: ["Intervention 24/7", "Dégagement après tempête", "Stabilisation d'arbres dangereux", "Sécurisation de la propriété"],
-    hash: "urgence",
+    intro: "",
+    desc: "Reprenez rapidement le contrôle des situations critiques avec notre équipe disponible pour les interventions urgentes. Tempête, bris de branche menaçant votre maison ou arbre tombé bloquant votre accès : on intervient sans délai pour sécuriser votre propriété.",
+    items: [],
+    hash: undefined,
     gradient: "from-amber-500/15 to-amber-700/5",
   },
   {
@@ -120,10 +120,10 @@ const services: Service[] = [
     image: imgDeneigement,
     imagePositionMobile: "center 45%",
     imagePositionDesktop: "center 38%",
-    intro: "Libérez vos toitures des accumulations dangereuses",
-    desc: "Techniques d'accès sur corde spécialisées pour les zones difficiles d'accès, sans endommager votre propriété ni compromettre notre sécurité. Évite les surcharges pouvant causer des affaissements.",
-    items: ["Déneigement de toitures en hauteur", "Accès sur corde spécialisé", "Retrait de glace", "Prévention des surcharges"],
-    hash: "deneigement",
+    intro: "",
+    desc: "Libérez vos toitures et structures des accumulations de neige dangereuses grâce à des techniques d'accès sur corde spécialisées. On accède aux zones difficiles d'accès sans endommager votre propriété ni compromettre notre sécurité. Cette approche évite les surcharges qui peuvent causer des affaissements.",
+    items: [],
+    hash: undefined,
     gradient: "from-sky-500/15 to-sky-700/5",
   },
 ];
@@ -238,13 +238,14 @@ const NosServices = () => {
                           ))}
                         </ul>
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Link
-                            to={`/apprendre#${s.hash}`}
-                            className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-primary min-[400px]:flex-none"
-                          >
-                            En savoir +
-                            <ArrowRight size={11} />
-                          </Link>
+                          {s.hash && (
+                            <Link
+                              to={`/apprendre#${s.hash}`}
+                              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-primary min-[400px]:flex-none"
+                            >
+                              En savoir +
+                            </Link>
+                          )}
                           <Link
                             to="/contactez-nous#soumission"
                             className="flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/90 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-accent"

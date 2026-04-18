@@ -6,10 +6,6 @@ export const faqs = [
     a: "Oui! Nous offrons des soumissions gratuites et sans engagement pour tous nos services. Contactez-nous par téléphone, texto ou via le formulaire.",
   },
   {
-    q: "Êtes-vous assurés?",
-    a: "Oui, nous détenons une assurance responsabilité civile complète pour protéger votre propriété et notre équipe.",
-  },
-  {
     q: "Quelle est votre zone de service?",
     a: "Nous desservons la Mauricie, Mékinac, Portneuf et les environs — incluant Trois-Rivières, Shawinigan, Saint-Tite, Saint-Raymond, Pont-Rouge et davantage.",
   },
