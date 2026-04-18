@@ -987,7 +987,7 @@ const ContactezNous = () => {
             <div className="rounded-2xl overflow-hidden border border-border/60 shadow-card">
               <iframe
                 title="Cantin Services d'Arbres — Saint-Raymond, QC"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43988.28!2d-71.8383!3d46.8975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb8b1a1a1a1a1a1%3A0x0!2sSaint-Raymond%2C+QC!5e0!3m2!1sfr!2sca!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87976.5!2d-71.9!3d46.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb917e53e77c99d%3A0x5bed2db43f69a4fb!2sSt-Raymond%2C%20QC%20G0A!5e0!3m2!1sfr!2sca!4v1713000000000"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}

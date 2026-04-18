@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle2, Lightbulb, AlertCircle, Info } from "lucide-react";
 
-import imgAbattage from "@/assets/apprendre-abattage.jpg";
+import imgAbattage from "@/assets/Apprendre - abattage 1.jpg";
+import imgEssouchage from "@/assets/apprendre-abattage.jpg";
 import imgElagage from "@/assets/apprendre_elagage_1.jpg";
 import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
 import imgTaille from "@/assets/apprendre-taille.jpg";
@@ -23,6 +24,7 @@ type SubSection = {
   items?: string[];
   note?: string;
   variant?: "info" | "fact" | "default";
+  image?: string;
 };
 
 type Section = {
@@ -67,6 +69,7 @@ const sections: Section[] = [
       {
         title: "Services complémentaires",
         variant: "default",
+        image: imgEssouchage,
         items: [
           "Nous offrons d'éliminer toutes traces de souche après avoir procédé à l'abattage",
           "Déchiquetage de branches et résidus d'abattage",
@@ -360,6 +363,14 @@ function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
         <Icon size={16} className={`${iconColor} shrink-0`} />
         <p className="text-sm font-bold">{sub.title}</p>
       </div>
+      {sub.image && (
+        <img
+          src={sub.image}
+          alt={sub.title}
+          className="w-full h-48 object-cover rounded-xl mb-4"
+          loading="lazy"
+        />
+      )}
       {sub.paragraphs?.map((p, i) => (
         <p key={i} className="text-sm text-muted-foreground leading-relaxed mb-3">
           {p}
