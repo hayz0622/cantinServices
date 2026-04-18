@@ -1,6 +1,6 @@
 import { useCallback, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { Phone, Mail, MapPin, Clock, ArrowRight, MessageSquare, CloudUpload, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ArrowRight, CloudUpload, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.png";
+
 
 import { SERVICE_ZONES } from "@/content/zones";
 import {
@@ -278,49 +278,8 @@ const ContactezNous = () => {
 
   return (
     <div>
-      {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative py-32 md:py-40 text-center overflow-hidden gradient-dark">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.04]"
-          aria-hidden
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <img
-              src={logo}
-              alt="Cantin Services d'Arbres"
-              className="mx-auto mb-8 h-24 md:h-32 w-auto drop-shadow-lg"
-            />
-            <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
-              <MessageSquare size={12} />
-              Prenons contact
-            </div>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-5 leading-tight">
-              <span className="text-gradient-amber">Contactez</span>-nous
-            </h1>
-            <p className="text-white/60 max-w-xl mx-auto text-lg">
-              Nous sommes disponibles pour répondre à toutes vos questions et planifier une intervention.
-            </p>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 50" fill="none" className="w-full" aria-hidden>
-            <path d="M0 50L1440 50L1440 15C1200 45 900 0 720 15C540 30 240 0 0 15L0 50Z" fill="white" />
-          </svg>
-        </div>
-      </section>
-
       {/* ── Main: coords + form ───────────────────────────────── */}
-      <section className="pb-20">
+      <section className="pt-10 pb-20">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Left: coordonnées */}
@@ -991,6 +950,53 @@ const ContactezNous = () => {
                 <span>{z}</span>
               </div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Google Maps ──────────────────────────────────────── */}
+      <section className="py-16">
+        <div className="container max-w-4xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+              <span className="w-8 h-0.5 bg-primary" />
+              Nous trouver
+              <span className="w-8 h-0.5 bg-primary" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-display font-extrabold">
+              Zone de <span className="text-gradient">service</span>
+            </h2>
+            <p className="text-muted-foreground mt-3">
+              Base d'opérations à Saint-Raymond — nous desservons la Mauricie et Portneuf.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={1}
+            variants={fadeUp}
+          >
+            <div className="rounded-2xl overflow-hidden border border-border/60 shadow-card">
+              <iframe
+                title="Cantin Services d'Arbres — Saint-Raymond, QC"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87976.5!2d-71.9!3d46.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb917e53e77c99d%3A0x5bed2db43f69a4fb!2sSt-Raymond%2C%20QC%20G0A!5e0!3m2!1sfr!2sca!4v1713000000000"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
