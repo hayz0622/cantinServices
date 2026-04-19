@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
 
@@ -36,6 +37,7 @@ const ContactezNous = () => {
   const [flowStep, setFlowStep] = useState<"details" | "contact">("details");
 
   const [abattageTreeType, setAbattageTreeType] = useState("");
+  const [abattageTreeSpecies, setAbattageTreeSpecies] = useState<string[]>([]);
   const [abattageMortOuDifficulte, setAbattageMortOuDifficulte] = useState("");
   const [abattageDiametre, setAbattageDiametre] = useState("");
   const [abattageConserverBois, setAbattageConserverBois] = useState("");
@@ -77,6 +79,7 @@ const ContactezNous = () => {
 
   const resetDetailFields = useCallback(() => {
     setAbattageTreeType("");
+    setAbattageTreeSpecies([]);
     setAbattageMortOuDifficulte("");
     setAbattageDiametre("");
     setAbattageConserverBois("");
@@ -213,6 +216,7 @@ const ContactezNous = () => {
       photoFileName: photoFile ? photoFile.name : photoName,
       abattage: {
         treeType: abattageTreeType,
+        treeSpecies: abattageTreeSpecies,
         mortOuDifficulte: abattageMortOuDifficulte,
         diametre: abattageDiametre,
         conserverBois: abattageConserverBois,
@@ -416,13 +420,71 @@ const ContactezNous = () => {
                         label="Votre arbre est-il un feuillu ou un résineux ?"
                         required
                         value={abattageTreeType}
-                        onChange={setAbattageTreeType}
+                        onChange={(v) => {
+                          setAbattageTreeType(v);
+                          setAbattageTreeSpecies([]);
+                        }}
                         options={[
                           { value: "feuillu", label: "Feuillus" },
                           { value: "resineux", label: "Résineux" },
                           { value: "autre", label: "Autre" },
                         ]}
                       />
+
+                      {abattageTreeType === "feuillu" && (
+                        <div className="space-y-3 rounded-xl border border-primary/15 bg-primary/5 p-4 sm:p-5">
+                          <Label className="text-sm font-bold">Feuillus</Label>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            {["Érable", "Frêne", "Peuplier", "Pommier", "Bouleau", "Orme", "Tilleul", "Autre / Je ne sais pas"].map((sp) => (
+                              <label
+                                key={sp}
+                                className={cn(
+                                  "flex items-center gap-3 rounded-xl border border-border/60 px-3 py-2.5 cursor-pointer transition-colors text-sm font-medium",
+                                  abattageTreeSpecies.includes(sp) ? "border-primary/50 bg-primary/5" : "hover:bg-muted/40",
+                                )}
+                              >
+                                <Checkbox
+                                  checked={abattageTreeSpecies.includes(sp)}
+                                  onCheckedChange={(checked) => {
+                                    setAbattageTreeSpecies((prev) =>
+                                      checked ? [...prev, sp] : prev.filter((s) => s !== sp)
+                                    );
+                                  }}
+                                />
+                                {sp}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {abattageTreeType === "resineux" && (
+                        <div className="space-y-3 rounded-xl border border-primary/15 bg-primary/5 p-4 sm:p-5">
+                          <Label className="text-sm font-bold">Résineux</Label>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            {["Pins", "Sapin", "Pruches", "Épinette", "Mélèze", "Cèdre", "Autre / Je ne sais pas"].map((sp) => (
+                              <label
+                                key={sp}
+                                className={cn(
+                                  "flex items-center gap-3 rounded-xl border border-border/60 px-3 py-2.5 cursor-pointer transition-colors text-sm font-medium",
+                                  abattageTreeSpecies.includes(sp) ? "border-primary/50 bg-primary/5" : "hover:bg-muted/40",
+                                )}
+                              >
+                                <Checkbox
+                                  checked={abattageTreeSpecies.includes(sp)}
+                                  onCheckedChange={(checked) => {
+                                    setAbattageTreeSpecies((prev) =>
+                                      checked ? [...prev, sp] : prev.filter((s) => s !== sp)
+                                    );
+                                  }}
+                                />
+                                {sp}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
                       <RadioBlock
                         label="L'arbre semble être mort ou en difficulté ?"
                         value={abattageMortOuDifficulte}

@@ -67,6 +67,7 @@ export function buildFormattedSubmissionText(args: {
   photoFileName: string | null;
   abattage: {
     treeType: string;
+    treeSpecies: string[];
     mortOuDifficulte: string;
     diametre: string;
     conserverBois: string;
@@ -98,6 +99,7 @@ export function buildFormattedSubmissionText(args: {
     detail =
       L("Détails — Abattage", [
         `Type d'arbre : ${displayArbreType(a.treeType)}`,
+        `Espèce(s) : ${a.treeSpecies.length > 0 ? a.treeSpecies.join(", ") : "—"}`,
         `Arbre mort ou en difficulté : ${displayOuiNon(a.mortOuDifficulte)}`,
         `Diamètre du tronc (≈ 1 m du sol) : ${a.diametre.trim() || "—"}`,
         `Conserver le bois > 4 po : ${displayOuiNon(a.conserverBois)}`,
