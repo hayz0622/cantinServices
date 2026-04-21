@@ -179,8 +179,8 @@ const sections: Section[] = [
     title: "Taille de haie",
     badge: "Ornemental & fruitier",
     image: imgTailleHaie,
-    imagePositionMobile: "center 48%",
-    imagePositionDesktop: "center 42%",
+    imagePositionMobile: "center 30%",
+    imagePositionDesktop: "center 25%",
     paragraphs: [],
     subSections: [
       {
@@ -577,7 +577,7 @@ const Apprendre = () => {
       ))}
 
       {/* ── Bande écureuil ──────────────────────────────────── */}
-      <ParallaxImageBand src={imgEcureuil} focalYMobile="45%" focalYDesktop="40%" />
+      <ParallaxImageBand src={imgEcureuil} focalYMobile="55%" focalYDesktop="52%" />
     </div>
   );
 };
