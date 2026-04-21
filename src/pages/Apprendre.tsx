@@ -8,14 +8,17 @@ import imgEssouchage from "@/assets/apprendre-abattage.jpg";
 import imgElagage from "@/assets/apprendre_elagage_1.jpg";
 import imgHaubanage from "@/assets/Apprendre-haubanage-2.png";
 import imgTaille from "@/assets/apprendre-taille.jpg";
+import imgTailleHaie from "@/assets/apprendre-taille-haie.png";
+import imgTailleFormation from "@/assets/Apprendre - Taille de formation.jpg";
 import imgPlantation from "@/assets/apprendre_plantation_1.avif";
 import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
 import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
 import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
-import heroBg from "@/assets/Apprendre - Taille de formation.jpg";
+import imgEcureuil from "@/assets/apprendre-ecureuil.png";
 
 import { PageHero } from "@/components/PageHero";
+import { ParallaxImageBand } from "@/components/ParallaxImageBand";
 
 /* ────────────────────────────────────────────────────────────
    Types
@@ -175,7 +178,7 @@ const sections: Section[] = [
     id: "taille",
     title: "Taille de haie",
     badge: "Ornemental & fruitier",
-    image: imgTaille,
+    image: imgTailleHaie,
     imagePositionMobile: "center 48%",
     imagePositionDesktop: "center 42%",
     paragraphs: [],
@@ -233,9 +236,9 @@ const sections: Section[] = [
     id: "taille-formation",
     title: "Taille de formation",
     badge: "Prévention",
-    image: imgElagage,
-    imagePositionMobile: "center 42%",
-    imagePositionDesktop: "center 38%",
+    image: imgTailleFormation,
+    imagePositionMobile: "center 45%",
+    imagePositionDesktop: "center 40%",
     paragraphs: [],
     subSections: [
       {
@@ -371,29 +374,31 @@ const sections: Section[] = [
 function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
   if (sub.variant === "hero") {
     return (
-      <div className="mt-14 mb-4 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-5">
-          <span className="w-8 h-0.5 bg-primary" />
-          Pourquoi planter?
-          <span className="w-8 h-0.5 bg-primary" />
+      <div className="mt-14 mb-4 w-full">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-5">
+            <span className="w-8 h-0.5 bg-primary" />
+            Pourquoi planter?
+            <span className="w-8 h-0.5 bg-primary" />
+          </div>
+          <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-4">
+            {sub.title.split("l'arbre")[0]}
+            <span className="text-gradient">de l'arbre</span>
+          </h3>
+          {sub.paragraphs?.map((p, i) => (
+            <p key={i} className="text-muted-foreground leading-relaxed text-lg max-w-2xl mx-auto">
+              {p}
+            </p>
+          ))}
         </div>
-        <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-5">
-          {sub.title.split("l'arbre")[0]}
-          <span className="text-gradient">de l'arbre</span>
-        </h3>
-        {sub.paragraphs?.map((p, i) => (
-          <p key={i} className="text-muted-foreground leading-relaxed text-lg mb-8">
-            {p}
-          </p>
-        ))}
         {sub.items && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {sub.items.map((item) => {
               const dashIdx = item.indexOf("—");
               const title = dashIdx > -1 ? item.slice(0, dashIdx).trim() : item;
               const desc = dashIdx > -1 ? item.slice(dashIdx + 1).trim() : "";
               return (
-                <div key={title} className="space-y-1.5">
+                <div key={title} className="space-y-2">
                   <p className="font-bold text-foreground text-base">{title}</p>
                   {desc && (
                     <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
@@ -479,7 +484,7 @@ const Apprendre = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={heroBg} imagePositionMobile="center 30%" imagePositionDesktop="center 25%" className="min-h-[50vh] md:min-h-[55vh]">
+      <PageHero image={imgTaille} imagePositionMobile="center 48%" imagePositionDesktop="center 42%" className="min-h-[50vh] md:min-h-[55vh]">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           Guide complet
         </div>
@@ -570,6 +575,9 @@ const Apprendre = () => {
           </div>
         </section>
       ))}
+
+      {/* ── Bande écureuil ──────────────────────────────────── */}
+      <ParallaxImageBand src={imgEcureuil} focalYMobile="45%" focalYDesktop="40%" />
     </div>
   );
 };
