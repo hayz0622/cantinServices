@@ -179,8 +179,8 @@ const sections: Section[] = [
     title: "Taille de haie",
     badge: "Ornemental & fruitier",
     image: imgTailleHaie,
-    imagePositionMobile: "center 40%",
-    imagePositionDesktop: "center 35%",
+    imagePositionMobile: "center 62%",
+    imagePositionDesktop: "center 58%",
     paragraphs: [],
     subSections: [
       {
