@@ -102,7 +102,7 @@ export function buildFormattedSubmissionText(args: {
         `Espèce(s) : ${a.treeSpecies.length > 0 ? a.treeSpecies.join(", ") : "—"}`,
         `Arbre mort ou en difficulté : ${displayOuiNon(a.mortOuDifficulte)}`,
         `Diamètre du tronc (≈ 1 m du sol) : ${a.diametre.trim() || "—"}`,
-        `Conserver le bois > 4 po : ${displayOuiNon(a.conserverBois)}`,
+        `Conserver du bois : ${displayOuiNon(a.conserverBois)}`,
         `Déchiquetage des branches : ${displayOuiNon(a.dechiquetage)}`,
         `Ménage : ${displayMenage(a.menage)}`,
         `Obstacles sous le port de l'arbre : ${displayOuiNon(a.obstacles)}`,

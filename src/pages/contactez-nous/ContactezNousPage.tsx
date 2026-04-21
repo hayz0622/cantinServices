@@ -1,6 +1,6 @@
 import { useCallback, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { Phone, Mail, MapPin, Clock, ArrowRight, CloudUpload, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ArrowRight, CloudUpload, Loader2, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,6 +73,7 @@ const ContactezNous = () => {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [fileInputKey, setFileInputKey] = useState(0);
   const [isSending, setIsSending] = useState(false);
+  const [formSent, setFormSent] = useState(false);
 
   const [honeyField, setHoneyField] = useState("");
   const [detailError, setDetailError] = useState("");
@@ -258,7 +259,7 @@ const ContactezNous = () => {
         rapport,
         photoFile,
       });
-      toast.success("Demande envoyée. Merci — nous vous contacterons bientôt.");
+      setFormSent(true);
       setNeedType("");
       setFlowStep("details");
       resetDetailFields();
@@ -390,6 +391,27 @@ const ContactezNous = () => {
               className="lg:col-span-3 scroll-mt-24"
             >
               <div className="bg-white rounded-2xl border border-border/60 shadow-card p-8">
+                {formSent ? (
+                  <div className="text-center py-16 px-4">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
+                      <CheckCircle2 size={40} className="text-primary" />
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-display font-extrabold mb-4">
+                      Formulaire envoyé!
+                    </h2>
+                    <p className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto mb-8">
+                      Merci pour votre visite! Nous avons bien reçu votre demande et nous vous contacterons sous peu.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setFormSent(false)}
+                      className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all duration-200"
+                    >
+                      Envoyer une autre demande
+                    </button>
+                  </div>
+                ) : (
+                <>
                 <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-5">
                   <span className="w-8 h-0.5 bg-primary" />
                   Formulaire
@@ -525,7 +547,7 @@ const ContactezNous = () => {
                         <p className="text-xs text-muted-foreground">Indiquez une mesure approximative au besoin.</p>
                       </div>
                       <RadioBlock
-                        label="Je désire conserver le bois de plus de 4 po de diamètre"
+                        label="Je désire conserver du bois"
                         value={abattageConserverBois}
                         onChange={setAbattageConserverBois}
                         options={[
@@ -989,6 +1011,8 @@ const ContactezNous = () => {
                     </div>
                   ) : null}
                 </form>
+                </>
+                )}
               </div>
             </motion.div>
           </div>
