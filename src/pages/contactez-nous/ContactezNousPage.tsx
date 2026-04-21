@@ -284,8 +284,26 @@ const ContactezNous = () => {
 
   return (
     <div>
+      {/* ── Bienvenue ─────────────────────────────────────────── */}
+      <section className="pt-14 pb-6">
+        <div className="container max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-3xl md:text-5xl font-display font-extrabold mb-4">
+              Soumission <span className="text-gradient-amber">gratuite</span>
+            </h1>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Bienvenue! Décrivez votre projet en quelques étapes et recevez une soumission adaptée à vos besoins, sans frais ni engagement.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Main: coords + form ───────────────────────────────── */}
-      <section className="pt-10 pb-20">
+      <section className="pb-20">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Left: coordonnées */}
@@ -307,7 +325,7 @@ const ContactezNous = () => {
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Que vous ayez des questions sur nos services, que vous souhaitiez planifier une intervention
                 ou discuter d'un projet d'abattage, d'élagage ou tout autre service — notre équipe est à
-                votre écoute. Remplissez notre formulaire ou contactez-nous directement.
+                votre écoute. Pour communiquer avec nous, veuillez remplir le formulaire pour une assistance rapide et professionnelle.
               </p>
 
               <div className="space-y-4">

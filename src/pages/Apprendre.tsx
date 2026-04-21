@@ -26,7 +26,7 @@ type SubSection = {
   paragraphs?: string[];
   items?: string[];
   note?: string;
-  variant?: "info" | "fact" | "default";
+  variant?: "info" | "fact" | "default" | "hero";
   image?: string;
 };
 
@@ -58,7 +58,7 @@ const sections: Section[] = [
     imagePositionMobile: "center 50%",
     imagePositionDesktop: "center 45%",
     paragraphs: [
-      "Que ce soit pour un abattage par le pied ou pour un démontage sur corde, nous savons gérer avec précision et propreté. Avant cette opération, il est recommandé de bien réfléchir aux bienfaits de l'arbre et aux conséquences de son départ. L'arbre crée de l'ombre, bloque les bourrasques de vent, crée de l'intimité, etc.",
+      "Que ce soit pour un abattage par le pied ou pour un démontage sur corde, nous savons gérer avec précision et propreté. Avant la coupe, il est recommandé de bien réfléchir aux bienfaits de l'arbre et aux conséquences de son départ. L'arbre crée de l'ombre, bloque les bourrasques de vent, crée de l'intimité, etc. La plupart du temps, un permis municipal sera nécessaire. Nous pouvons vous aider et vous guider dans la demande — n'hésitez pas à nous contacter.",
       "Bien qu'il soit possible d'en planter d'autres, cela peut prendre bien plus que le cours d'une vie pour qu'ils se développent à maturité.",
     ],
     items: [
@@ -88,7 +88,7 @@ const sections: Section[] = [
         items: [
           "Nous offrons un service d'assistance dans le processus de demande de permis et agissons comme mandataire pour vous.",
           "Nous fournissons un rapport professionnel : certaines villes exigent ou recommandent un rapport d'arboriculteur certifié pour justifier l'abattage (arbre mort, dangereux ou causant des dommages).",
-          "Critère : L'abattage est autorisé si l'arbre est mort, dangereux, malade (ex. : agrile du frêne), nuit à une construction autorisée ou est planté trop près d'infrastructures.",
+          "Critères fréquents : L'abattage est autorisé si l'arbre est mort, dangereux, malade (ex. : agrile du frêne), nuit à une construction autorisée ou est planté trop près d'infrastructures. Les règles varient d'une municipalité à l'autre — vérifiez toujours auprès de votre ville.",
           "Remplacement : La ville exige parfois la plantation d'un nouvel arbre pour chaque arbre abattu afin de maintenir la canopée. Par chance, nous sommes aussi experts en plantation.",
         ],
       },
@@ -279,8 +279,8 @@ const sections: Section[] = [
         ],
       },
       {
-        title: "Bienfait de l'arbre",
-        variant: "fact",
+        title: "Bienfaits de l'arbre",
+        variant: "hero",
         paragraphs: [
           "Voici quelques incontournables que procurent les arbres",
         ],
@@ -369,6 +369,44 @@ const sections: Section[] = [
    ──────────────────────────────────────────────────────────── */
 
 function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
+  if (sub.variant === "hero") {
+    return (
+      <div className="mt-14 mb-4 text-center max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-5">
+          <span className="w-8 h-0.5 bg-primary" />
+          Pourquoi planter?
+          <span className="w-8 h-0.5 bg-primary" />
+        </div>
+        <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-5">
+          {sub.title.split("l'arbre")[0]}
+          <span className="text-gradient">de l'arbre</span>
+        </h3>
+        {sub.paragraphs?.map((p, i) => (
+          <p key={i} className="text-muted-foreground leading-relaxed text-lg mb-8">
+            {p}
+          </p>
+        ))}
+        {sub.items && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mt-6">
+            {sub.items.map((item) => {
+              const dashIdx = item.indexOf("—");
+              const title = dashIdx > -1 ? item.slice(0, dashIdx).trim() : item;
+              const desc = dashIdx > -1 ? item.slice(dashIdx + 1).trim() : "";
+              return (
+                <div key={title} className="space-y-1.5">
+                  <p className="font-bold text-foreground text-base">{title}</p>
+                  {desc && (
+                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   const borderClass =
     sub.variant === "info"
       ? "bg-primary/4 border-primary/15"

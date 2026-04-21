@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { ImageIcon, ArrowRight, Camera } from "lucide-react";
 
-import abattage1 from "@/assets/Apprendre - abattage 1.jpg";
 import abattage2 from "@/assets/galerie-abattage-2.jpg";
 import abattage3 from "@/assets/galerie-abattage-3.jpg";
 import abattage4 from "@/assets/galerie-abattage2.jpg";
@@ -15,8 +14,6 @@ import lumiere1 from "@/assets/galerie-lumiere1.jpg";
 import lumiere2 from "@/assets/galerie-lumiere2.jpg";
 import rabaissage from "@/assets/galerie-rabaissage.jpg";
 import tailleHaie from "@/assets/Réalisation -  taille de haie 1.jpg";
-import urgenceEte from "@/assets/galerie-urgence-ete.jpg";
-import urgenceHiver from "@/assets/galerie-urgence-hiver.jpg";
 
 import { PageHero } from "@/components/PageHero";
 import { fadeUpGallery as fadeUp } from "@/lib/motionVariants";
@@ -24,10 +21,9 @@ import { fadeUpGallery as fadeUp } from "@/lib/motionVariants";
 const heroBg = avantApres;
 
 const images = [
-  { src: abattage1, alt: "Abattage 1", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
-  { src: abattage2, alt: "Abattage 2", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
-  { src: abattage3, alt: "Abattage 3", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
-  { src: abattage4, alt: "Abattage 4", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: abattage2, alt: "Abattage", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
+  { src: abattage3, alt: "Abattage", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
+  { src: abattage4, alt: "Abattage", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
   { src: avantApres, alt: "Avant / Après", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
   { src: elagage, alt: "Élagage", imagePositionMobile: "center 42%", imagePositionDesktop: "center 38%" },
   { src: outils, alt: "Outils", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
@@ -36,8 +32,6 @@ const images = [
   { src: lumiere2, alt: "Lumière 2", imagePositionMobile: "center 50%", imagePositionDesktop: "center 45%" },
   { src: rabaissage, alt: "Rabaissage", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
   { src: tailleHaie, alt: "Taille de haie", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
-  { src: urgenceEte, alt: "Urgence été", imagePositionMobile: "center 48%", imagePositionDesktop: "center 42%" },
-  { src: urgenceHiver, alt: "Urgence hiver", imagePositionMobile: "center 45%", imagePositionDesktop: "center 40%" },
 ];
 
 const Realisations = () => {
