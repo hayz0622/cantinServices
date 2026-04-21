@@ -179,8 +179,8 @@ const sections: Section[] = [
     title: "Taille de haie",
     badge: "Ornemental & fruitier",
     image: imgTailleHaie,
-    imagePositionMobile: "center 30%",
-    imagePositionDesktop: "center 25%",
+    imagePositionMobile: "center 40%",
+    imagePositionDesktop: "center 35%",
     paragraphs: [],
     subSections: [
       {
@@ -549,8 +549,8 @@ const Apprendre = () => {
                     </div>
                   )}
 
-                  {/* Sub-sections */}
-                  {s.subSections?.map((sub, si) => (
+                  {/* Sub-sections (non-hero only) */}
+                  {s.subSections?.filter(sub => sub.variant !== "hero").map((sub, si) => (
                     <SubSectionCard key={si} sub={sub} accent={s.accent} />
                   ))}
                 </div>
@@ -571,6 +571,11 @@ const Apprendre = () => {
                   />
                 </div>
               </div>
+
+              {/* Hero sub-sections rendered full-width outside the grid */}
+              {s.subSections?.filter(sub => sub.variant === "hero").map((sub, si) => (
+                <SubSectionCard key={`hero-${si}`} sub={sub} accent={s.accent} />
+              ))}
             </motion.div>
           </div>
         </section>
