@@ -15,7 +15,7 @@ import imgFertilisation from "@/assets/Apprendre_fertilisation.jpg";
 import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
 import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
-import imgEcureuil from "@/assets/apprendre-ecureuil.png";
+import imgEcureuil from "@/assets/Apprendre - bas de page .jpg";
 
 import { PageHero } from "@/components/PageHero";
 import { ParallaxImageBand } from "@/components/ParallaxImageBand";
