@@ -382,7 +382,7 @@ function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
             <span className="w-8 h-0.5 bg-primary" />
           </div>
           <h3 className="text-3xl md:text-4xl font-display font-extrabold mb-4">
-            {sub.title.split("l'arbre")[0]}
+            Bienfaits{" "}
             <span className="text-gradient">de l'arbre</span>
           </h3>
           {sub.paragraphs?.map((p, i) => (
@@ -392,16 +392,16 @@ function SubSectionCard({ sub, accent }: { sub: SubSection; accent: string }) {
           ))}
         </div>
         {sub.items && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8 text-left">
             {sub.items.map((item) => {
               const dashIdx = item.indexOf("—");
               const title = dashIdx > -1 ? item.slice(0, dashIdx).trim() : item;
               const desc = dashIdx > -1 ? item.slice(dashIdx + 1).trim() : "";
               return (
                 <div key={title} className="space-y-2">
-                  <p className="font-bold text-foreground text-base">{title}</p>
+                  <p className="font-bold text-foreground text-lg">{title}</p>
                   {desc && (
-                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                    <p className="text-muted-foreground leading-relaxed">{desc}</p>
                   )}
                 </div>
               );
