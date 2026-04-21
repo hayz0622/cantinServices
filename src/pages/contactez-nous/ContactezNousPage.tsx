@@ -264,6 +264,9 @@ const ContactezNous = () => {
       setFlowStep("details");
       resetDetailFields();
       resetContactFields();
+      setTimeout(() => {
+        document.getElementById("soumission")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     } catch (err) {
       if (err instanceof EmailJsNotConfiguredError) {
         toast.error(
