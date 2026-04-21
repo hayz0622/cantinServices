@@ -16,6 +16,7 @@ import imgUrgence from "@/assets/galerie-urgence-ete.jpg";
 import imgDeneigement from "@/assets/galerie-urgence-hiver.jpg";
 import imgDeneigementCorde from "@/assets/déneigement_sur_la_code.png";
 import imgEcureuil from "@/assets/Apprendre - bas de page .jpg";
+import heroBg from "@/assets/realisation - paysage automne.jpg";
 
 import { PageHero } from "@/components/PageHero";
 import { ParallaxImageBand } from "@/components/ParallaxImageBand";
@@ -484,7 +485,7 @@ const Apprendre = () => {
   return (
     <div>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <PageHero image={imgTaille} imagePositionMobile="center 48%" imagePositionDesktop="center 42%" className="min-h-[50vh] md:min-h-[55vh]">
+      <PageHero image={heroBg} imagePositionMobile="center 40%" imagePositionDesktop="center 35%" className="min-h-[50vh] md:min-h-[55vh]">
         <div className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-6 bg-accent/15 border border-accent/20 px-4 py-1.5 rounded-full">
           Guide complet
         </div>
