@@ -560,7 +560,7 @@ const Apprendre = () => {
                   <img
                     src={s.image}
                     alt={s.title}
-                    className="responsive-focal-object rounded-2xl shadow-card w-full h-96 object-cover sticky top-28"
+                    className="responsive-focal-object rounded-2xl shadow-card w-full h-[28rem] md:h-[32rem] object-cover sticky top-28"
                     style={
                       {
                         "--focal-mobile": s.imagePositionMobile ?? "center",
