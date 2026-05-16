@@ -64,7 +64,7 @@ export function buildFormattedSubmissionText(args: {
   province: string;
   codePostal: string;
   messageProjet: string;
-  photoFileName: string | null;
+  photoFileNames: string[];
   abattage: {
     treeType: string;
     treeSpecies: string[];
@@ -156,9 +156,14 @@ export function buildFormattedSubmissionText(args: {
   ].join("\n"));
 
   const projet = L("Projet (message du client)", args.messageProjet.trim() || "—");
+  const names = args.photoFileNames.map((n) => n.trim()).filter(Boolean);
   const photo = L(
-    "Pièce jointe",
-    args.photoFileName ? `Une photo a été jointe : ${args.photoFileName}` : "Aucune photo jointe.",
+    "Pièces jointes (photos)",
+    names.length === 0
+      ? "Aucune photo jointe."
+      : names.length === 1
+        ? `Une photo a été jointe : ${names[0]}`
+        : `${names.length} photos jointes :\n${names.map((n, i) => `  ${i + 1}. ${n}`).join("\n")}`,
   );
 
   return `${header}${detail}${coordonnees}${projet}${photo}`;

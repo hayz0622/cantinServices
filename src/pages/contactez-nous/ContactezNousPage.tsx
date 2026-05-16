@@ -1,6 +1,6 @@
 import { useCallback, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { Phone, Mail, MapPin, Clock, ArrowRight, CloudUpload, Loader2, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ArrowRight, CloudUpload, Loader2, CheckCircle2, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -32,6 +32,46 @@ import {
 } from "@/lib/emailJsContact";
 import { CanopyHintIllustration, RadioBlock } from "./formComponents";
 import { buildFormattedSubmissionText } from "./submissionFormat";
+
+const MAX_PROJECT_PHOTO_BYTES = 5 * 1024 * 1024;
+const MAX_PROJECT_PHOTO_COUNT = 10;
+
+function projectPhotoFingerprint(f: File): string {
+  return `${f.name}\u0000${f.size}\u0000${f.lastModified}`;
+}
+
+/** Ajoute les fichiers choisis à la liste existante (sans doublons identiques), dans la limite `maxCount`. */
+function mergePickedProjectPhotos(
+  existing: File[],
+  picked: File[],
+  maxBytes: number,
+  maxCount: number,
+): {
+  next: File[];
+  oversizeMessages: string[];
+  notAddedBecauseFull: number;
+} {
+  const oversizeMessages: string[] = [];
+  const seen = new Set(existing.map(projectPhotoFingerprint));
+  const validNew: File[] = [];
+  for (const f of picked) {
+    if (f.size > maxBytes) {
+      oversizeMessages.push(`« ${f.name} » dépasse 5 Mo et a été ignorée.`);
+      continue;
+    }
+    const fp = projectPhotoFingerprint(f);
+    if (seen.has(fp)) continue;
+    seen.add(fp);
+    validNew.push(f);
+  }
+  const merged = [...existing, ...validNew];
+  if (merged.length <= maxCount) {
+    return { next: merged, oversizeMessages, notAddedBecauseFull: 0 };
+  }
+  const next = merged.slice(0, maxCount);
+  return { next, oversizeMessages, notAddedBecauseFull: merged.length - next.length };
+}
+
 const ContactezNous = () => {
   const [needType, setNeedType] = useState<NeedType | "">("");
   const [flowStep, setFlowStep] = useState<"details" | "contact">("details");
@@ -69,8 +109,7 @@ const ContactezNous = () => {
   const [codePostal, setCodePostal] = useState("");
   const [courriel, setCourriel] = useState("");
   const [messageProjet, setMessageProjet] = useState("");
-  const [photoName, setPhotoName] = useState<string | null>(null);
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoFiles, setPhotoFiles] = useState<File[]>([]);
   const [fileInputKey, setFileInputKey] = useState(0);
   const [isSending, setIsSending] = useState(false);
   const [formSent, setFormSent] = useState(false);
@@ -122,8 +161,7 @@ const ContactezNous = () => {
     setCodePostal("");
     setCourriel("");
     setMessageProjet("");
-    setPhotoName(null);
-    setPhotoFile(null);
+    setPhotoFiles([]);
     setFileInputKey((k) => k + 1);
   }, []);
 
@@ -214,7 +252,7 @@ const ContactezNous = () => {
       province,
       codePostal,
       messageProjet,
-      photoFileName: photoFile ? photoFile.name : photoName,
+      photoFileNames: photoFiles.map((f) => f.name),
       abattage: {
         treeType: abattageTreeType,
         treeSpecies: abattageTreeSpecies,
@@ -257,7 +295,7 @@ const ContactezNous = () => {
         telephone: tel,
         courriel: mail,
         rapport,
-        photoFile,
+        photoFiles,
       });
       setFormSent(true);
       setNeedType("");
@@ -942,30 +980,82 @@ const ContactezNous = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label className="text-sm font-bold">Photo (photo de l'arbre)</Label>
+                        <Label className="text-sm font-bold">
+                          Photos (arbres, situation, etc.) — au plus {MAX_PROJECT_PHOTO_COUNT}, 5 Mo chacune
+                        </Label>
                         <label className="flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border/80 bg-muted/20 px-4 py-8 cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors">
                           <CloudUpload className="text-primary" size={28} />
-                          <span className="font-bold text-sm">Joindre fichier</span>
-                          <span className="text-xs text-muted-foreground">Glissez-déposez un fichier ici ou cliquez pour parcourir</span>
+                          <span className="font-bold text-sm">Joindre des fichiers</span>
+                          <span className="text-xs text-muted-foreground text-center px-2">
+                            Cliquez pour parcourir — chaque sélection s&apos;ajoute aux photos déjà choisies (plusieurs
+                            fichiers à la fois possible)
+                          </span>
                           <Input
                             key={fileInputKey}
                             type="file"
                             accept="image/*"
+                            multiple
                             className="sr-only"
                             onChange={(e) => {
-                              const f = e.target.files?.[0] ?? null;
-                              if (f && f.size > 5 * 1024 * 1024) {
-                                toast.error("La photo ne doit pas dépasser 5 Mo.");
-                                setFileInputKey((k) => k + 1);
-                                return;
+                              const picked = Array.from(e.target.files ?? []);
+                              if (picked.length === 0) return;
+
+                              const { next, oversizeMessages, notAddedBecauseFull } = mergePickedProjectPhotos(
+                                photoFiles,
+                                picked,
+                                MAX_PROJECT_PHOTO_BYTES,
+                                MAX_PROJECT_PHOTO_COUNT,
+                              );
+                              for (const msg of oversizeMessages) {
+                                toast.error(msg);
                               }
-                              setPhotoFile(f);
-                              setPhotoName(f ? f.name : null);
+                              if (notAddedBecauseFull > 0) {
+                                toast.error(
+                                  `Vous pouvez joindre au plus ${MAX_PROJECT_PHOTO_COUNT} photos. ${notAddedBecauseFull} photo(s) supplémentaire(s) n'ont pas été ajoutée(s) (limite atteinte).`,
+                                );
+                              }
+                              setPhotoFiles(next);
+                              setFileInputKey((k) => k + 1);
                             }}
                           />
                         </label>
-                        {photoName ? (
-                          <p className="text-xs text-muted-foreground">Fichier sélectionné : {photoName}</p>
+                        {photoFiles.length > 0 ? (
+                          <div className="space-y-2">
+                            <ul className="text-xs text-muted-foreground space-y-1.5 border border-border/60 rounded-xl p-3 bg-muted/10">
+                              {photoFiles.map((f, i) => (
+                                <li key={`${f.name}-${i}-${f.size}`} className="flex items-center justify-between gap-2">
+                                  <span className="truncate min-w-0" title={f.name}>
+                                    {f.name}
+                                  </span>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 shrink-0 rounded-lg"
+                                    aria-label={`Retirer ${f.name}`}
+                                    onClick={() => {
+                                      setPhotoFiles((prev) => prev.filter((_, j) => j !== i));
+                                      setFileInputKey((k) => k + 1);
+                                    }}
+                                  >
+                                    <X className="h-4 w-4" />
+                                  </Button>
+                                </li>
+                              ))}
+                            </ul>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="rounded-lg h-9 text-xs"
+                              onClick={() => {
+                                setPhotoFiles([]);
+                                setFileInputKey((k) => k + 1);
+                              }}
+                            >
+                              Effacer toutes les photos
+                            </Button>
+                          </div>
                         ) : null}
                       </div>
 

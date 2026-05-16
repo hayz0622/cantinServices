@@ -134,7 +134,7 @@ export async function sendContactEmail(params: {
   telephone: string;
   courriel: string;
   rapport: string;
-  photoFile: File | null;
+  photoFiles: File[];
 }) {
   const { publicKey, serviceId, adminTemplateId, confirmationTemplateId } = getConfig();
   if (!publicKey || !serviceId || !adminTemplateId || !confirmationTemplateId) {
@@ -147,9 +147,15 @@ export async function sendContactEmail(params: {
 
   try {
     let rapportBody = params.rapport;
-    if (params.photoFile) {
-      const cloudinaryUrl = await uploadPhotoToCloudinary(params.photoFile);
-      rapportBody = `${rapportBody}\n\n── Photo transmise (Cloudinary) ──\nNom du fichier : ${params.photoFile.name}\nLien : ${cloudinaryUrl}`;
+    if (params.photoFiles.length > 0) {
+      const lines: string[] = ["── Photos transmises (Cloudinary) ──"];
+      let index = 1;
+      for (const file of params.photoFiles) {
+        const cloudinaryUrl = await uploadPhotoToCloudinary(file);
+        lines.push(`${index}. ${file.name}`, `   Lien : ${cloudinaryUrl}`);
+        index += 1;
+      }
+      rapportBody = `${rapportBody}\n\n${lines.join("\n")}`;
     }
     const rapportForEmail = truncateUtf8Bytes(rapportBody, MAX_RAPPORT_UTF8_BYTES);
     const htmlContent = buildSubmissionEmailHtml(rapportForEmail);
@@ -184,9 +190,7 @@ export async function sendContactEmail(params: {
     await reportEmailJsErrorToDevTerminal({
       step: "sendContactEmail",
       cloudinaryEnabled: true,
-      photo: params.photoFile
-        ? { name: params.photoFile.name, size: params.photoFile.size, type: params.photoFile.type }
-        : null,
+      photos: params.photoFiles.map((f) => ({ name: f.name, size: f.size, type: f.type })),
       serviceId,
       adminTemplateId,
       confirmationTemplateId,
